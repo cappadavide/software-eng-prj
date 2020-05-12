@@ -1,0 +1,21 @@
+.gestisciRecensioniButton {
+    -fx-graphic: url('../immagini/GestisciRecensioni.png');
+}
+
+.gestisciRecensioniButton:hover {
+    -fx-graphic: url('../immagini/GestisciRecensioniHover.png');
+}
+
+.gestisciStruttureButton {
+    -fx-graphic: url('../immagini/GestisciStrutture.png');
+}
+
+.gestisciStruttureButton:hover {
+    -fx-graphic: url('../immagini/GestisciStruttureHover.png');
+}
+
+.backButton {
+    -fx-graphic: url('../immagini/Back.png');
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}

@@ -1,0 +1,62 @@
+package presenter;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.MenuBar;
+import javafx.stage.Stage;
+
+public class MenuPresenter implements Initializable {
+
+    @FXML
+    MenuBar menuBar;
+
+    private RecensioniPresenter recensioni;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        System.out.println("Hai cliccato Esci");
+        Parent menuPrincipale = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
+        Scene menuPrincipaleView = new Scene(menuPrincipale);
+
+        Stage window = (Stage) menuBar.getScene().getWindow();
+        window.setScene(menuPrincipaleView);
+        window.show();
+    }
+
+    @FXML
+    private void visualizzaInformazioni(final ActionEvent event) throws IOException {
+        System.out.println("Hai cliccato Informazioni");
+        Parent informazioni = FXMLLoader.load(getClass().getResource("/view/informazioni.fxml"));
+        Scene informazioniView = new Scene(informazioni);
+
+        Stage window = new Stage();
+        window.setScene(informazioniView);
+        window.setTitle("Informazioni");
+        window.show();
+    }
+ 
+
+    @FXML
+    private void clickBack(ActionEvent event) throws IOException {
+        System.out.println("Hai cliccato Indietro");
+        Parent gestisciStrutture = FXMLLoader.load(getClass().getResource("/view/gestisciStrutture.fxml"));
+        Scene gestisciStruttureView = new Scene(gestisciStrutture);
+
+        Stage window = (Stage) menuBar.getScene().getWindow();
+        window.setScene(gestisciStruttureView);
+        window.show();
+    }
+
+}
