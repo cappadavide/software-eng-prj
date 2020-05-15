@@ -1,0 +1,83 @@
+.gestisciRecensioniButton {
+    -fx-graphic: url('../immagini/GestisciRecensioni.png');
+}
+
+.gestisciRecensioniButton:hover {
+    -fx-graphic: url('../immagini/GestisciRecensioniHover.png');
+}
+
+.gestisciStruttureButton {
+    -fx-graphic: url('../immagini/GestisciStrutture.png');
+}
+
+.gestisciStruttureButton:hover {
+    -fx-graphic: url('../immagini/GestisciStruttureHover.png');
+}
+
+.aggiungiStrutturaButton {
+    -fx-graphic: url('../immagini/AggiungiStruttura.png');
+}
+
+.aggiungiStrutturaButton:hover {
+    -fx-graphic: url('../immagini/AggiungiStrutturaHover.png');
+}
+
+.ricercaStrutturaButton {
+    -fx-graphic: url('../immagini/RicercaStruttura.png');
+}
+
+.ricercaStrutturaButton:hover {
+    -fx-graphic: url('../immagini/RicercaStrutturaHover.png');
+}
+
+.backButton {
+    -fx-graphic: url('../immagini/Back.png');
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.starsOneCheckBox {
+    -fx-graphic: url('../immagini/starsOne.png');
+     -fx-border-color: transparent;
+     -fx-background-color: transparent;
+}
+
+.starsTwoCheckBox {
+    -fx-graphic: url('../immagini/starsTwo.png');
+     -fx-border-color: transparent;
+     -fx-background-color: transparent;
+}
+
+.starsThreeCheckBox {
+    -fx-graphic: url('../immagini/starsThree.png');
+     -fx-border-color: transparent;
+     -fx-background-color: transparent;
+}
+
+.starsFourCheckBox {
+    -fx-graphic: url('../immagini/starsFour.png');
+     -fx-border-color: transparent;
+     -fx-background-color: transparent;
+}
+
+.starsFiveCheckBox {
+    -fx-graphic: url('../immagini/starsFive.png');
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.cercaButton {
+    -fx-background-color: #8F8A8A;
+    -fx-background-radius: 26;
+}
+
+.notification-bar>.pane .label {
+    -fx-font-size: 1em; /*12px;*/
+    -fx-text-fill: #3B3B3B;
+    -fx-alignment: center;
+}
+
+.inserisciButton {
+    -fx-background-color: #F8A419;
+    -fx-background-radius: 10;
+}
