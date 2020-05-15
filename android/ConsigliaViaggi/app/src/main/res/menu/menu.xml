@@ -1,0 +1,16 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/impostazioni"
+        android:icon="@drawable/settings"
+        android:title="Impostazioni" />
+
+    <item
+        android:id="@+id/homeicon"
+        android:icon="@drawable/home"
+        android:title="Home" />
+
+    <item android:id="@+id/recensioni"
+        android:title="Recensioni"
+        android:icon="@drawable/reviews" />
+</menu>
