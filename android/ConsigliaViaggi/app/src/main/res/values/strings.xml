@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ConsigliaViaggi</string>
+    <string name="access_token">pk.eyJ1IjoiY2FwcGFkYXZpZGUiLCJhIjoiY2s4eGEzYjBxMDQzcTNscXpqcDRoZHp6ciJ9.AAsoCB4X8U2gQZVRa0U1Bg</string>
 </resources>

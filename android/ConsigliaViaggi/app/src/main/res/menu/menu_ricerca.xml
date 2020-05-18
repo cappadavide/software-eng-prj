@@ -1,0 +1,11 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/cerca"
+        android:title="Cerca"
+        android:icon="@drawable/lentepiccola" />
+
+    <item android:id="@+id/mappa"
+        android:title="Modalità mappa"
+        android:icon="@drawable/mappaicon" />
+
+</menu>
