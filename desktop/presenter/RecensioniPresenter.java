@@ -73,7 +73,7 @@ public class RecensioniPresenter implements Initializable {
                 while (rs.next()) {
                     list.add(new RecensioneModel(
                             rs.getString("usernameutente"),
-                            rs.getString("nome"),
+                            rs.getString("strutturaid"),
                             rs.getString("titolo"),
                             rs.getString("rating"),
                             rs.getString("corpo"),
@@ -81,16 +81,22 @@ public class RecensioniPresenter implements Initializable {
                     ));
                     reviews++;
                 }
-               /* ObservableList<RecensioneModel> obl = FXCollections.observableArrayList(list);
+                ObservableList<RecensioneModel> obl = FXCollections.observableArrayList(list);
                 listSearch.setItems(obl);
                 listSearch.setCellFactory(recensioneCell -> new RecensioneCell());
                 message.setText(reviews + " recensioni pendenti");
-               */
+                expandList();
             }
         } catch (SQLException ex) {
             Logger.getLogger(RecensioniPresenter.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public void expandList() {
+        expandButton.setOnAction((ActionEvent e) -> {
+            expandButton.setVisible(false);
+        });
     }
 
     @FXML
