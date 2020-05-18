@@ -18,5 +18,18 @@
         <item name="android:colorForeground">@color/black</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="RadioButton_blue" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/grey</item>
+        <item name="colorAccent">@color/blue</item>
+    </style>
+    <style name="EditText_blue" parent="Theme.AppCompat">
+        <item name="colorControlActivated">@color/blue</item>
+        <item name="android:textColorHint">@color/grey</item>
+        <item name="android:colorForeground">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="SeekBarWithoutSteps" parent="Base.Widget.AppCompat.SeekBar.Discrete">
+        <item name="tickMark">@null</item>
+    </style>
 
 </resources>

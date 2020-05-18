@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.Impostazioni">
+
+    <TextView
+        android:id="@+id/account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/centurygothicbold"
+        android:text="Account"
+        android:textAllCaps="true"
+        android:textColor="@color/orange"
+        android:textSize="15sp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="60dp"/>
+
+    <TextView
+        android:id="@+id/accedi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/centurygothicbold"
+        android:text="Accedi"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="visible"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/account"/>
+
+    <TextView
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/centurygothicbold"
+        android:text="Esci"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        android:layout_below="@id/account"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="6dp"/>
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/centurygothicbold"
+        android:text="Informazioni sull'App"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_below="@id/altro"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/altro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/centurygothicbold"
+        android:text="Altro"
+        android:textAllCaps="true"
+        android:textColor="@color/orange"
+        android:textSize="15sp"
+        android:layout_marginStart="6dp"
+        android:layout_below="@id/separatore"
+        android:layout_marginTop="20dp"/>
+
+    <ImageView
+        android:id="@+id/separatore"
+        android:layout_width="230dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="6dp"
+        android:background="@drawable/separatore"
+        android:layout_below="@id/accedi"
+        android:layout_marginTop="20dp"/>
+
+</RelativeLayout>

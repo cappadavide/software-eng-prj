@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navigationBottom = findViewById(R.id.navigation);
         navigationBottom.setOnNavigationItemSelectedListener(navListener);
-        //qui si deve far partire il primo fragment
+        getSupportFragmentManager().beginTransaction().replace(R.id.your_placeholder, new HomeView()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener= new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             switch (menuItem.getItemId()) {
 
                 case R.id.homeicon:
-                    //
+                    selectedFragment = new HomeView();
                     break;
 
                 case R.id.recensioni:
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.impostazioni:
-                    //
+
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.your_placeholder, selectedFragment).commit();
