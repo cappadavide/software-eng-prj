@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditText
+        android:id="@+id/terminetext"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="7dp"
+        android:fontFamily="@font/centurygothicregular"
+        android:hint="Inserire un termine di ricerca"
+        android:theme="@style/EditText_blue"
+        android:inputType="text" />
+
+    <ImageView
+        android:id="@+id/lente"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/lentepiccola"
+        android:layout_toEndOf="@id/terminetext"
+        android:layout_alignBottom="@id/terminetext"/>
+
+    <TextView
+        android:id="@+id/localita"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Specifica una località"
+        android:layout_below="@id/terminetext"
+        android:layout_alignStart="@id/terminetext"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/centurygothicbold"/>
+
+    <EditText
+        android:id="@+id/localitatext"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/localita"
+        android:fontFamily="@font/centurygothicregular"
+        android:hint="Inserisci una località"
+        android:theme="@style/EditText_blue"
+        android:inputType="text"
+        android:layout_alignStart="@id/localita" />
+
+    <Button
+        android:id="@+id/geoloc"
+        android:layout_width="30dp"
+        android:layout_height="33dp"
+        android:background="@drawable/geoloc"
+        android:layout_toEndOf="@id/localitatext"
+        android:layout_marginBottom="8dp"
+        android:layout_alignBottom="@id/localitatext"/>
+
+    <TextView
+        android:layout_below="@id/localitatext"
+        android:id="@+id/filterDialogHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/centurygothicbold"
+        android:layout_marginTop="5dp"
+        android:text="Filtri di ricerca"
+        android:layout_alignStart="@id/localitatext"/>
+
+    <TextView
+        android:id="@+id/categoryDialogHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/filterDialogHeader"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/centurygothicbold"
+        android:text="Categoria"
+        android:layout_alignStart="@id/filterDialogHeader"
+        android:paddingTop="20dp"/>
+
+    <!--Hotel-->
+    <TextView
+        android:id="@+id/hotelDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/categoryDialogHeader"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/centurygothicbold"
+        android:text="Hotel"
+        android:paddingTop="10dp"
+        android:layout_alignStart="@id/categoryDialogHeader" />
+
+    <ImageView
+        android:id="@+id/hotelIconFilter"
+        android:layout_width="20dp"
+        android:layout_height="23.7dp"
+        android:background="@drawable/hotelicon"
+        android:layout_alignBottom="@id/hotelDialog"
+        android:layout_toEndOf="@id/hotelDialog"
+        android:layout_marginBottom="6dp"
+        android:layout_marginStart="15dp" />
+
+    <RadioButton
+        android:id="@+id/radiohotel"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:checked="false"
+        android:theme="@style/RadioButton_blue"
+        android:layout_toEndOf="@id/hotelIconFilter"
+        android:layout_marginStart="16dp"
+        android:layout_alignBottom="@id/hotelDialog"
+        android:layout_alignTop="@id/hotelIconFilter"
+        >
+    </RadioButton>
+
+    <!--Appartamento-->
+
+    <TextView
+        android:id="@+id/apartmentDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/categoryDialogHeader"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_alignBottom="@id/hotelDialog"
+        android:fontFamily="@font/centurygothicbold"
+        android:text="Appartamento"
+        android:paddingTop="10dp"
+        android:layout_toEndOf="@id/hotelIconFilter"
+        android:layout_marginStart="50dp"/>
+
+    <ImageView
+        android:id="@+id/apartmentIconFilter"
+        android:layout_width="30dp"
+        android:layout_height="23.7dp"
+        android:background="@drawable/apartmenticon"
+        android:layout_alignBottom="@id/apartmentDialog"
+        android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@id/apartmentDialog"
+        android:layout_marginStart="10dp" />
+
+    <RadioButton
+        android:id="@+id/radioapp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:checked="false"
+        android:theme="@style/RadioButton_blue"
+        android:layout_toEndOf="@id/apartmentIconFilter"
+        android:layout_marginStart="5dp"
+        android:layout_alignBottom="@id/apartmentDialog"
+        android:layout_alignTop="@id/apartmentIconFilter"/>
+
+    <!--B&B-->
+
+    <TextView
+        android:id="@+id/bbDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hotelDialog"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/centurygothicbold"
+        android:text="B&amp;B"
+        android:paddingTop="15dp"
+        android:layout_alignStart="@id/categoryDialogHeader" />
+
+    <ImageView
+        android:id="@+id/bbIconFilter"
+        android:layout_width="26dp"
+        android:layout_height="23dp"
+        android:background="@drawable/bed_breakfasticon"
+        android:layout_alignBottom="@id/bbDialog"
+        android:layout_toEndOf="@id/bbDialog"
+        android:layout_marginBottom="4dp"
+        android:layout_alignStart="@id/hotelIconFilter" />
+
+    <RadioButton
+        android:id="@+id/radiobb"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:checked="false"
+        android:theme="@style/RadioButton_blue"
+        android:layout_toEndOf="@id/bbIconFilter"
+        android:layout_alignStart="@id/radiohotel"
+        android:layout_alignBottom="@id/bbDialog"
+        android:layout_alignTop="@id/bbIconFilter"/>
+
+    <!--Other-->
+
+    <TextView
+        android:id="@+id/otherDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/apartmentDialog"
+        android:layout_alignStart="@id/apartmentDialog"
+        android:layout_toEndOf="@id/bbIconFilter"
+        android:layout_alignBottom="@id/bbDialog"
+        android:fontFamily="@font/centurygothicbold"
+        android:paddingTop="15dp"
+        android:text="Altro"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <RadioButton
+        android:id="@+id/radioaltro"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@id/radioapp"
+        android:layout_alignTop="@id/radiobb"
+        android:layout_toEndOf="@id/otherDialog"
+        android:layout_alignBottom="@id/otherDialog"
+        android:checked="false"
+        android:theme="@style/RadioButton_blue"/>
+
+    <!--Media Recensioni-->
+
+    <TextView
+        android:id="@+id/ratingAvgDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Media Recensioni"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/centurygothicbold"
+        android:layout_alignStart="@id/filterDialogHeader"
+        android:layout_below="@id/bbDialog"
+        android:paddingTop="25dp"/>
+
+    <!--Una stella-->
+
+    <ImageView
+        android:id="@+id/star1ImgDialog"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/unastella"
+        android:layout_alignStart="@id/filterDialogHeader"
+        android:layout_below="@id/ratingAvgDialog"/>
+
+    <RadioButton
+        android:id="@+id/radior1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_toEndOf="@id/star1ImgDialog"
+        android:layout_alignBottom="@id/star1ImgDialog"
+        android:layout_alignTop="@id/star1ImgDialog"
+        android:layout_marginStart="10dp"
+        android:checked="false"
+        android:theme="@style/RadioButton_blue"/>
+
+    <!--Due stelle-->
+
+    <ImageView
+        android:id="@+id/star2ImgDialog"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/duestelle"
+        android:layout_alignStart="@id/filterDialogHeader"
+        android:layout_below="@id/star1ImgDialog"/>
+
+    <RadioButton
+        android:id="@+id/radior2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_toEndOf="@id/star2ImgDialog"
+        android:layout_alignBottom="@id/star2ImgDialog"
+        android:layout_alignTop="@id/star2ImgDialog"
+        android:layout_marginStart="10dp"
+        android:checked="false"
+        android:theme="@style/RadioButton_blue"/>
+
+    <!--Tre stelle-->
+
+    <ImageView
+        android:id="@+id/star3ImgDialog"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/trestelle"
+        android:layout_alignStart="@id/filterDialogHeader"
+        android:layout_below="@id/star2ImgDialog"/>
+
+    <RadioButton
+        android:id="@+id/radior3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_toEndOf="@id/star3ImgDialog"
+        android:layout_alignBottom="@id/star3ImgDialog"
+        android:layout_alignTop="@id/star3ImgDialog"
+        android:layout_marginStart="10dp"
+        android:checked="false"
+        android:theme="@style/RadioButton_blue"/>
+
+    <!--Quattro stelle-->
+
+    <ImageView
+        android:id="@+id/star4ImgDialog"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/quattrostelle"
+        android:layout_toEndOf="@id/radior1"
+        android:layout_below="@id/ratingAvgDialog"
+        android:layout_marginStart="20dp"/>
+
+    <RadioButton
+        android:id="@+id/radior4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_toEndOf="@id/star4ImgDialog"
+        android:layout_alignBottom="@id/star4ImgDialog"
+        android:layout_alignTop="@id/star4ImgDialog"
+        android:layout_marginStart="10dp"
+        android:checked="false"
+        android:theme="@style/RadioButton_blue"/>
+
+    <!--Cinque stelle-->
+
+    <ImageView
+        android:id="@+id/star5ImgDialog"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/quattrostelle"
+        android:layout_toEndOf="@id/radior2"
+        android:layout_below="@id/star4ImgDialog"
+        android:layout_marginStart="20dp"/>
+
+    <RadioButton
+        android:id="@+id/radior5"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_toEndOf="@id/star5ImgDialog"
+        android:layout_alignBottom="@id/star5ImgDialog"
+        android:layout_alignTop="@id/star5ImgDialog"
+        android:layout_marginStart="10dp"
+        android:checked="false"
+        android:theme="@style/RadioButton_blue"/>
+
+    <!--Prezzi-->
+
+    <TextView
+        android:id="@+id/priceDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prezzo"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/centurygothicbold"
+        android:layout_alignStart="@id/filterDialogHeader"
+        android:layout_below="@id/star3ImgDialog"
+        android:paddingTop="20dp"/>
+
+    <EditText
+        android:id="@+id/da"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
+        android:fontFamily="@font/centurygothicregular"
+        android:hint="Da  €"
+        android:inputType="text"
+        android:textSize="15sp"
+        android:theme="@style/EditText_blue"
+        android:layout_below="@id/priceDialog"
+        android:layout_alignStart="@id/filterDialogHeader"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:id="@+id/a"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
+        android:fontFamily="@font/centurygothicregular"
+        android:hint="A  €"
+        android:inputType="text"
+        android:textSize="15sp"
+        android:theme="@style/EditText_blue"
+        android:layout_toEndOf="@id/da"
+        android:layout_below="@id/priceDialog"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp" />
+
+    <Button
+        android:id="@+id/searchbutton"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:background="@drawable/disable_search_button"
+        android:layout_below="@id/da"
+        android:enabled="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"/>
+
+    <ListView
+        android:id="@+id/lv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/localitatext"
+        android:layout_alignStart="@id/localitatext"
+        android:layout_alignEnd="@id/localitatext"
+        android:background="#FFFFFF"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/distanzatitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/terminetext"
+        android:layout_alignStart="@id/terminetext"
+        android:fontFamily="@font/centurygothicbold"
+        android:text="Raggio di ricerca"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="invisible"></TextView>
+    <SeekBar
+        android:id="@+id/seekBar"
+        style="@style/SeekBarWithoutSteps"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        android:layout_below="@id/distanzatitle"
+        android:layout_marginTop="10dp"
+        android:layout_alignStart="@id/terminetext"
+        android:max="20"
+        android:thumbTint="@color/blue"
+        android:visibility="invisible"
+        android:progress="0" />
+    <TextView
+        android:id="@+id/distanzavalue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0m"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:visibility="invisible"
+        android:fontFamily="@font/centurygothicregular"
+        android:layout_alignBottom="@id/seekBar"
+        android:layout_toEndOf="@id/seekBar"/>
+</RelativeLayout>

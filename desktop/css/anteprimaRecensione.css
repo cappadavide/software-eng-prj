@@ -1,0 +1,21 @@
+
+.arrowButton {
+    -fx-graphic: url('../immagini/arrow.png');
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.approvaButton, .declinaButton {
+    -fx-background-color: white;
+    -fx-border-color: #707070;
+    -fx-text-fill: #1676B7;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+.approvaButton:hover, .declinaButton:hover {
+    -fx-background-color: #1676B7;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
