@@ -9,37 +9,37 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
-import com.example.consigliaviaggi.PresenterToViewRicercaStruttura;
 import com.example.consigliaviaggi.R;
-import com.example.consigliaviaggi.SearchPresenter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class RicercaAlberghi extends AppCompatActivity{
+public class RicercaRistoranti extends AppCompatActivity {
 
     private Toolbar toolbar;
-    Fragment selectedFragment = null;
+    Fragment selectedFragment=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ricerca_alberghi);
+        setContentView(R.layout.activity_ricerca_ristoranti);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Ricerca alberghi");
+        getSupportActionBar().setTitle("Ricerca ristoranti");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         BottomNavigationView b=findViewById(R.id.search);
 
         b.setOnNavigationItemSelectedListener(navListener);
-}
+        getSupportFragmentManager().beginTransaction().replace(R.id.framericerca, selectedFragment).commit();
+    }
 
-private BottomNavigationView.OnNavigationItemSelectedListener navListener= new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener= new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-
+            selectedFragment = null;
 
             switch (menuItem.getItemId()) {
 
@@ -55,3 +55,7 @@ private BottomNavigationView.OnNavigationItemSelectedListener navListener= new B
             return true;
         }
     };
+
+
+}
+

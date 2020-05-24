@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.mapbox.mapboxsdk.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            mapbox:mapbox_cameraTargetLat="41.89306"
+            mapbox:mapbox_cameraTargetLng="12.48278"
+            mapbox:mapbox_cameraZoom="5"
+            android:layout_height="match_parent">
+        </com.mapbox.mapboxsdk.maps.MapView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transpWhite">
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            app:defaultQueryHint="Cerca una località"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_toStartOf="@id/filter"
+            android:layout_toEndOf="@id/goBackMap"
+            android:iconifiedByDefault="false">
+
+        </androidx.appcompat.widget.SearchView>
+
+        <ListView
+            android:id="@+id/lv1"
+            android:layout_width="match_parent"
+            android:layout_below="@id/searchView"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"></ListView>
+        <Button
+            android:id="@+id/goBackMap"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/back"
+            ></Button>
+        <Button
+            android:id="@+id/filter"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/filterbutton" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_anchor="@id/bottom_sheet"
+        app:layout_anchorGravity="top|end"
+        android:backgroundTint="#FFFFFF"
+        android:clickable="true"
+        mapbox:srcCompat="@drawable/ic_gps_fixed_blue_50dp"
+        android:focusable="true" />
+    <include layout="@layout/bottomsheet"></include>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

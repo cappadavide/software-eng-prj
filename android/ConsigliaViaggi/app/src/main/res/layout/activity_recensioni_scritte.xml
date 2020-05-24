@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/listavuota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sifonnpro"
+        android:text="Per visualizzare le tue recensioni effettua il login."
+        android:textColor="@color/orange"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/norecensioni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sifonnpro"
+        android:text="Non ci sono recensioni da visualizzare."
+        android:textColor="@color/orange"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:textSize="15sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/row_recensione">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

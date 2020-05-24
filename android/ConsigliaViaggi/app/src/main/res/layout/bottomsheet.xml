@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:background="@android:color/darker_gray"
+    android:orientation="vertical"
+    app:behavior_hideable="true"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/strutturaTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="20sp"
+            android:text="Sample"
+            android:fontFamily="@font/sifonnpro"
+            android:textColor="@color/blue" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:max="5"
+            style="?android:attr/ratingBarStyleSmall"
+            android:isIndicator="true"
+            android:progressTint="@color/orange"
+            android:layout_below="@id/strutturaTitle"
+            android:layout_marginTop="10dp"
+            android:layout_alignStart="@id/strutturaTitle"/>
+
+        <ImageView
+            android:id="@+id/strutturaPreview"
+            android:layout_toEndOf="@id/ratingBar"
+            android:layout_alignTop="@id/ratingBar"
+            android:layout_marginStart="50dp"
+            android:layout_width="160dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/roundedcorners"/>
+
+        <TextView
+            android:id="@+id/priceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ratingBar"
+            android:layout_marginTop="12dp"
+            android:layout_alignStart="@id/ratingBar"
+            android:text="-"
+            android:textSize="12sp"
+            android:fontFamily="@font/centurygothicbold"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/distanceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/priceText"
+            android:layout_alignStart="@id/ratingBar"
+            android:layout_alignEnd="@id/ratingBar"
+            android:layout_marginTop="10dp"
+            android:text=""
+            android:textSize="12sp"
+            android:fontFamily="@font/centurygothicregular"
+            android:textColor="@color/orange" />
+    </RelativeLayout>
+
+</LinearLayout>

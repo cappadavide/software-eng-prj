@@ -1,4 +1,4 @@
-package com.example.consigliaviaggi;
+package com.example.consigliaviaggi.view;
 
 import android.content.Intent;
 import android.os.Bundle;

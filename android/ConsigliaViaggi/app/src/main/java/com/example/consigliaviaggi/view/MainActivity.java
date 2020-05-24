@@ -1,4 +1,4 @@
-package com.example.consigliaviaggi;
+package com.example.consigliaviaggi.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,13 +34,14 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.recensioni:
-                    //
+                    selectedFragment = new RecensioniScritte();
                     break;
 
                 case R.id.impostazioni:
-
+                    selectedFragment = new Impostazioni();
                     break;
             }
+            assert selectedFragment != null;
             getSupportFragmentManager().beginTransaction().replace(R.id.your_placeholder, selectedFragment).commit();
             return true;
         }
