@@ -24,19 +24,23 @@
           </Menu>
         </menus>
       </MenuBar>
+      <Button fx:id="backButton" mnemonicParsing="false" onAction="#clickBack" styleClass="backButton" stylesheets="@../consigliaviaggi/css/style.css">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin></Button>
       <BorderPane prefHeight="800.0" prefWidth="1280.0">
          <top>
-            <Text fx:id="benvenuto" strokeWidth="0.0" text="Benvenuto, cosa vuoi gestire?" textAlignment="CENTER" BorderPane.alignment="BOTTOM_CENTER">
+            <Text fx:id="benvenuto" strokeWidth="0.0" text="Scegli tra:" textAlignment="CENTER" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Microsoft New Tai Lue" size="36.0" />
                </font>
                <BorderPane.margin>
-                  <Insets bottom="30.0" top="50.0" />
+                  <Insets bottom="30.0" />
                </BorderPane.margin>
             </Text>
          </top>
          <center>
-            <GridPane BorderPane.alignment="CENTER">
+            <GridPane stylesheets="@../consigliaviaggi/css/style.css" BorderPane.alignment="CENTER">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -45,33 +49,33 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="345.0" minHeight="10.0" prefHeight="317.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="206.0" minHeight="10.0" prefHeight="186.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="270.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="206.0" minHeight="10.0" prefHeight="162.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="gestisciRecensioniButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickGestisciRecensioni" prefHeight="100.0" prefWidth="100.0" styleClass="gestisciRecensioniButton" stylesheets="@../consigliaviaggi/css/style.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickAggiungiStruttura" prefHeight="100.0" prefWidth="100.0" styleClass="aggiungiStrutturaButton" stylesheets="@../consigliaviaggi/css/style.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets top="20.0" />
                      </GridPane.margin></Button>
-                  <Button fx:id="gestisciStruttureButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickGestisciStrutture" prefHeight="100.0" prefWidth="100.0" styleClass="gestisciStruttureButton" stylesheets="@../consigliaviaggi/css/style.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="ricercaStrutturaButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickRicercaStruttura" prefHeight="100.0" prefWidth="100.0" styleClass="ricercaStrutturaButton" stylesheets="@../consigliaviaggi/css/style.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets top="20.0" />
                      </GridPane.margin></Button>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Approva o elimina le recensioni pendenti." wrappingWidth="260.193359375" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Inserisci nuove strutture all'interno del Database" textAlignment="CENTER" wrappingWidth="194.193359375" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
                         <Font name="Segoe UI Italic" size="18.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets top="10.0" />
+                        <Insets top="40.0" />
                      </GridPane.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Inserisci nuove strutture, modifica o elimina quelle esistenti." wrappingWidth="264.193359375" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Modifica o elimina strutture già esistenti all'interno del Database" wrappingWidth="264.193359375" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
                         <Font name="Segoe UI Italic" size="18.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets top="10.0" />
+                        <Insets top="40.0" />
                      </GridPane.margin>
                   </Text>
                </children>

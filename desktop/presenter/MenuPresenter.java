@@ -46,7 +46,52 @@ public class MenuPresenter implements Initializable {
         window.setTitle("Informazioni");
         window.show();
     }
- 
+
+    @FXML
+    private void clickGestisciStrutture(ActionEvent event) throws IOException {
+        System.out.println("Hai cliccato Gestisci Strutture");
+        Parent gestisciStrutture = FXMLLoader.load(getClass().getResource("/view/gestisciStrutture.fxml"));
+        Scene gestisciStruttureView = new Scene(gestisciStrutture);
+
+        Stage window = (Stage) menuBar.getScene().getWindow();
+        window.setScene(gestisciStruttureView);
+        window.show();
+
+    }
+
+    @FXML
+    private void clickGestisciRecensioni(ActionEvent event) throws IOException {
+        System.out.println("Hai cliccato Gestisci Recensioni");
+        Parent gestisciRecensioni = FXMLLoader.load(getClass().getResource("/view/listaRecensioni.fxml"));
+        Scene gestisciRecensioniView = new Scene(gestisciRecensioni);
+
+        Stage window = (Stage) menuBar.getScene().getWindow();
+        window.setScene(gestisciRecensioniView);
+        window.show();
+
+    }
+
+    @FXML
+    private void clickAggiungiStruttura(final ActionEvent event) throws IOException {
+        System.out.println("Hai cliccato Aggiungi Struttura");
+        Parent aggiungiStruttura = FXMLLoader.load(getClass().getResource("/view/aggiungiStruttura.fxml"));
+        Scene aggiungiStrutturaView = new Scene(aggiungiStruttura);
+
+        Stage window = (Stage) menuBar.getScene().getWindow();
+        window.setScene(aggiungiStrutturaView);
+        window.show();
+    }
+
+    @FXML
+    private void clickRicercaStruttura(ActionEvent event) throws IOException {
+        System.out.println("Hai cliccato Ricerca struttura");
+        Parent ricercaStruttura = FXMLLoader.load(getClass().getResource("/view/ricercaStruttura.fxml"));
+        Scene ricercaStrutturaView = new Scene(ricercaStruttura);
+
+        Stage window = (Stage) menuBar.getScene().getWindow();
+        window.setScene(ricercaStrutturaView);
+        window.show();
+    }
 
     @FXML
     private void clickBack(ActionEvent event) throws IOException {

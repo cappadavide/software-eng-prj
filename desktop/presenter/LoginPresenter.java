@@ -48,25 +48,25 @@ public class LoginPresenter implements Initializable {
         String username = usernameField.getText();
         String password = passwordField.getText();
         
-        try {
-            model.connect(username,password);
+       // try {
+         //   model.connect(username,password);
             Parent menuPrincipale = FXMLLoader.load(getClass().getResource("/view/menu.fxml"));
             Scene menuPrincipaleView = new Scene(menuPrincipale);
         
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(menuPrincipaleView);
             window.show();
-        }
-        catch (SQLException e){
-            System.err.println("SQLState: " +
-                    ((SQLException)e).getSQLState());
+      //  }
+      //  catch (SQLException e){
+          //  System.err.println("SQLState: " +
+          //          ((SQLException)e).getSQLState());
 
-                System.err.println("Error Code: " +
-                    ((SQLException)e).getErrorCode());
+            //    System.err.println("Error Code: " +
+            //        ((SQLException)e).getErrorCode());
 
-            errorMessage.setText("Nome utente o credenziali non valide");
-            errorMessage.setFill(Color.FIREBRICK);
-       }
+          //  errorMessage.setText("Nome utente o credenziali non valide");
+          //  errorMessage.setFill(Color.FIREBRICK);
+       // }
     }
     
 }
