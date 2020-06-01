@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +18,7 @@
             android:id="@+id/username"
             android:layout_width="240dp"
             android:layout_height="40dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="35dp"
             android:fontFamily="@font/centurygothicregular"
             android:hint="Username"
             android:inputType="text"
@@ -57,7 +58,7 @@
             android:id="@+id/iscrivitibtn"
             android:layout_width="150dp"
             android:layout_height="60dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/iscriviti"
             android:layout_below="@id/accedibtn"
             android:layout_centerHorizontal="true"/>
@@ -66,36 +67,35 @@
             android:id="@+id/invalid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/centurygothicbold"
-            android:text="Nome utente o credenziali non valide!"
+            android:fontFamily="@font/centurygothicregular"
+            android:text="Credenziali non valide."
             android:textColor="@color/bordeaux"
             android:visibility="invisible"
             android:textSize="15sp"
             android:layout_below="@id/password"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"/>
 
         <TextView
             android:id="@+id/loggato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/centurygothicbold"
-            android:text="Utente già loggato!"
+            android:fontFamily="@font/centurygothicregular"
+            android:text="Utente già loggato."
             android:textColor="@color/bordeaux"
             android:visibility="invisible"
             android:textSize="15sp"
             android:layout_below="@id/password"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"/>
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="350dp"
-            android:layout_height="230dp"
-            android:background="@drawable/logo"
-            android:layout_below="@id/toolbar_orange"
+            android:layout_width="300dp"
+            android:layout_height="210dp"
+            android:background="@drawable/qualitylogo"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="90dp"/>
 
     </RelativeLayout>
 </ScrollView>

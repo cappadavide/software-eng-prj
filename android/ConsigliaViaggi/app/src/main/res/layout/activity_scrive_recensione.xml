@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <include
         android:id="@+id/toolbar_orange"
@@ -18,12 +18,12 @@
         android:textColor="@color/orange"
         android:layout_below="@id/titletext"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="6dp"/>
+        android:layout_marginStart="5dp"/>
 
     <EditText
         android:id="@+id/titletext"
-        android:layout_width="125dp"
-        android:layout_height="40dp"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
         android:inputType="text"
         android:textSize="12sp"
         android:fontFamily="@font/centurygothicregular"
@@ -31,7 +31,7 @@
         android:theme="@style/EditText_orange"
         android:layout_below="@id/title"
         android:layout_marginTop="3dp"
-        android:layout_marginStart="6dp"/>
+        android:layout_marginStart="5dp"/>
 
     <Switch
         android:id="@+id/switch2"
@@ -40,28 +40,29 @@
         android:theme="@style/Toogle_orange"
         android:layout_below="@id/mostrauser"
         android:layout_marginTop="8dp"
-        android:layout_marginStart="6dp"/>
+        android:layout_marginStart="5dp"/>
 
     <TextView
         android:id="@+id/desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/centurygothicregular"
-        android:textSize="12sp"
+        android:textSize="10sp"
         android:text="Gli utenti che visualizzano la tua recensione\n
 vedranno come nome autore il tuo username\n
 altrimenti il tuo nome e cognome."
         android:layout_below="@id/switch2"
         android:layout_marginTop="3dp"
-        android:layout_marginStart="6dp"/>
+        android:layout_marginStart="5dp"/>
 
     <TextView
         android:id="@+id/desctext"
-        android:layout_width="100dp"
-        android:layout_height="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/centurygothicbold"
         android:text="DESCRIZIONE"
         android:textSize="15sp"
+        android:layout_marginStart="5dp"
         android:textColor="@color/orange"
         android:layout_below="@id/desc"
         android:layout_marginTop="8dp"/>
@@ -69,11 +70,12 @@ altrimenti il tuo nome e cognome."
     <EditText
         android:id="@+id/box"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:fontFamily="@font/centurygothicregular"
         android:textColor="@color/black"
         android:background="@drawable/recensione_text_box"
         android:gravity="top"
+        android:layout_centerHorizontal="true"
         android:textSize="12sp"
         android:inputType="textMultiLine"
         android:theme="@style/EditText_orange"
@@ -85,14 +87,13 @@ altrimenti il tuo nome e cognome."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:isIndicator="false"
-        android:max="5"
         android:numStars="5"
         android:rating="1.0"
         android:stepSize="1.0"
         android:theme="@style/Rating_orange"
         android:layout_below="@id/textView4"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="6dp"/>
+        android:layout_marginStart="5dp"/>
 
     <TextView
         android:id="@+id/title"
@@ -103,7 +104,7 @@ altrimenti il tuo nome e cognome."
         android:textSize="15sp"
         android:textColor="@color/orange"
         android:layout_below="@id/ratingBar"
-        android:layout_marginStart="6dp"/>
+        android:layout_marginStart="5dp"/>
 
     <TextView
         android:id="@+id/textView4"
@@ -113,7 +114,8 @@ altrimenti il tuo nome e cognome."
         android:text="VALUTAZIONE"
         android:textSize="15sp"
         android:textColor="@color/orange"
-        android:layout_marginTop="100dp"
-        android:layout_marginStart="6dp"/>
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/toolbar_orange"
+        android:layout_marginStart="5dp"/>
 
 </RelativeLayout>

@@ -16,24 +16,23 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="280dp"
-            android:layout_height="180dp"
-            android:background="@drawable/logo"
-            android:layout_below="@id/toolbar_orange"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="30dp"/>
+            android:layout_width="300dp"
+            android:layout_height="210dp"
+            android:background="@drawable/qualitylogo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"/>
 
         <CheckBox
             android:id="@+id/checkBox"
             android:layout_width="315dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/utenteinvalid"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/centurygothicregular"
             android:text="Ho preso visione dell'informativa sulla Privacy, delle condizioni e termini di utilizzo."
             android:textColor="@color/black"
-            android:textSize="13sp"
+            android:textSize="12sp"
             android:theme="@style/CheckPrivacy" />
 
         <EditText
@@ -46,7 +45,7 @@
             android:theme="@style/EditText_orange"
             android:fontFamily="@font/centurygothicregular"
             android:layout_below="@id/imageView"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"/>
 
         <EditText
@@ -58,7 +57,7 @@
             android:inputType="textEmailAddress"
             android:fontFamily="@font/centurygothicregular"
             android:textSize="15sp"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
             android:layout_below="@id/cognome"/>
 
@@ -71,7 +70,7 @@
             android:fontFamily="@font/centurygothicregular"
             android:textSize="15sp"
             android:theme="@style/EditText_orange"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
             android:layout_below="@id/email"/>
 
@@ -84,7 +83,7 @@
             android:inputType="textPassword"
             android:textSize="15sp"
             android:theme="@style/EditText_orange"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
             android:layout_below="@id/username"/>
 
@@ -97,7 +96,7 @@
             android:textSize="15sp"
             android:fontFamily="@font/centurygothicregular"
             android:theme="@style/EditText_orange"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:layout_below="@id/nome"
             android:layout_marginTop="8dp"/>
 
@@ -107,7 +106,7 @@
             android:layout_height="40dp"
             android:background="@drawable/disable_registrazione_button"
             android:enabled="false"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:layout_below="@id/checkBox"/>
 
@@ -115,12 +114,12 @@
             android:id="@+id/utenteinvalid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/centurygothicbold"
-            android:text="Utente con queste credenziali già presente!"
+            android:fontFamily="@font/centurygothicregular"
+            android:text="Utente con queste credenziali già presente."
             android:textColor="@color/bordeaux"
             android:textSize="15sp"
             android:visibility="invisible"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
             android:layout_below="@id/password"/>
 
@@ -128,12 +127,12 @@
             android:id="@+id/emailinvalid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/centurygothicbold"
-            android:text="Formato email non valido!"
+            android:fontFamily="@font/centurygothicregular"
+            android:text="Formato email non valido."
             android:textColor="@color/bordeaux"
             android:textSize="15sp"
             android:visibility="invisible"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
             android:layout_below="@id/password"/>
 
@@ -141,12 +140,12 @@
             android:id="@+id/usernameinvalid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/centurygothicbold"
-            android:text="Formato username non valido!"
+            android:fontFamily="@font/centurygothicregular"
+            android:text="Formato username non valido."
             android:textColor="@color/bordeaux"
             android:textSize="15sp"
             android:visibility="invisible"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
             android:layout_below="@id/password"/>
 

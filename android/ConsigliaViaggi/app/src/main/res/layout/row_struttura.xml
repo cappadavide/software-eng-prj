@@ -1,0 +1,82 @@
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/AppThemeCard"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="20dip"
+    app:cardElevation="6dp"
+    android:clickable="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:focusable="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bluecorners">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/roundedcorners"/>
+
+        <TextView
+            android:id="@+id/strutturanome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/image"
+            android:fontFamily="@font/sifonnpro"
+            android:text="STRUTTURA"
+            android:textColor="@color/blue"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/indirizzo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/strutturanome"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/image"
+            android:fontFamily="@font/centurygothicregular"
+            android:text="INDIRIZZO"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/prezzo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/indirizzo"
+            android:layout_marginStart="30dp"
+            android:layout_toEndOf="@id/image"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/centurygothicregular"
+            android:text="PREZZO"
+            android:textColor="@color/black"
+            android:textSize="11sp" />
+
+        <RatingBar
+            android:id="@+id/ratingrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/prezzo"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@+id/image"
+            android:clickable="false"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:theme="@style/Rating_orange"
+            style="?android:attr/ratingBarStyleSmall"/>
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

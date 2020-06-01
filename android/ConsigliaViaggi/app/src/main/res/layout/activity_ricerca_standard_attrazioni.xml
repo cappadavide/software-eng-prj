@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -8,9 +8,9 @@
     <EditText
         android:id="@+id/terminetext"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginStart="7dp"
+        android:layout_marginStart="6dp"
         android:fontFamily="@font/centurygothicregular"
         android:hint="Inserire un termine di ricerca"
         android:theme="@style/EditText_blue"
@@ -47,11 +47,11 @@
         android:inputType="text"
         android:layout_alignStart="@id/localita" />
 
-    <ImageView
+    <Button
         android:id="@+id/geoloc"
         android:layout_width="30dp"
         android:layout_height="33dp"
-        android:background="@drawable/geoloc"
+        android:background="@drawable/iconaseek"
         android:layout_toEndOf="@id/localitatext"
         android:layout_marginBottom="8dp"
         android:layout_alignBottom="@id/localitatext"/>
@@ -64,7 +64,7 @@
         android:textSize="20sp"
         android:textColor="@color/black"
         android:fontFamily="@font/centurygothicbold"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:text="Filtri di ricerca"
         android:layout_alignStart="@id/localitatext"/>
 
@@ -78,7 +78,7 @@
         android:fontFamily="@font/centurygothicbold"
         android:text="Categoria"
         android:layout_alignStart="@id/filterDialogHeader"
-        android:paddingTop="20dp"/>
+        android:layout_marginTop="16dp"/>
 
     <!--Hotel-->
     <TextView
@@ -90,7 +90,7 @@
         android:textColor="@color/black"
         android:fontFamily="@font/centurygothicbold"
         android:text="Museo"
-        android:paddingTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_alignStart="@id/categoryDialogHeader" />
 
     <ImageView
@@ -100,7 +100,7 @@
         android:background="@drawable/museumicon"
         android:layout_alignBottom="@id/hotelDialog"
         android:layout_toEndOf="@id/hotelDialog"
-        android:layout_marginBottom="6dp"
+        android:layout_marginBottom="3dp"
         android:layout_marginStart="15dp" />
 
     <RadioButton
@@ -110,9 +110,9 @@
         android:checked="false"
         android:theme="@style/RadioBotton_blue"
         android:layout_toEndOf="@id/hotelIconFilter"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="15dp"
         android:layout_alignBottom="@id/hotelDialog"
-        android:layout_alignTop="@id/hotelIconFilter"
+        android:layout_alignTop="@id/hotelDialog"
         >
     </RadioButton>
 
@@ -128,7 +128,7 @@
         android:layout_alignBottom="@id/hotelDialog"
         android:fontFamily="@font/centurygothicbold"
         android:text="ParcoGiochi"
-        android:paddingTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_toEndOf="@id/hotelIconFilter"
         android:layout_marginStart="50dp"/>
 
@@ -138,7 +138,7 @@
         android:layout_height="23.7dp"
         android:background="@drawable/amusementparkicon"
         android:layout_alignBottom="@id/apartmentDialog"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="3dp"
         android:layout_toEndOf="@id/apartmentDialog"
         android:layout_marginStart="10dp" />
 
@@ -151,7 +151,7 @@
         android:layout_toEndOf="@id/apartmentIconFilter"
         android:layout_marginStart="5dp"
         android:layout_alignBottom="@id/apartmentDialog"
-        android:layout_alignTop="@id/apartmentIconFilter"/>
+        android:layout_alignTop="@id/apartmentDialog"/>
 
     <!--B&B-->
 
@@ -164,17 +164,17 @@
         android:textColor="@color/black"
         android:fontFamily="@font/centurygothicbold"
         android:text="Zoo"
-        android:paddingTop="15dp"
+        android:layout_marginTop="15dp"
         android:layout_alignStart="@id/categoryDialogHeader" />
 
     <ImageView
         android:id="@+id/bbIconFilter"
-        android:layout_width="26dp"
+        android:layout_width="20dp"
         android:layout_height="23dp"
         android:background="@drawable/zooicon"
         android:layout_alignBottom="@id/bbDialog"
         android:layout_toEndOf="@id/bbDialog"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="3dp"
         android:layout_alignStart="@id/hotelIconFilter" />
 
     <RadioButton
@@ -186,7 +186,7 @@
         android:layout_toEndOf="@id/bbIconFilter"
         android:layout_alignStart="@id/radiohotel"
         android:layout_alignBottom="@id/bbDialog"
-        android:layout_alignTop="@id/bbIconFilter"/>
+        android:layout_alignTop="@id/bbDialog"/>
 
     <!--Other-->
 
@@ -199,7 +199,7 @@
         android:layout_toEndOf="@id/bbIconFilter"
         android:layout_alignBottom="@id/bbDialog"
         android:fontFamily="@font/centurygothicbold"
-        android:paddingTop="15dp"
+        android:layout_marginTop="15dp"
         android:text="Altro"
         android:textColor="@color/black"
         android:textSize="20sp" />
@@ -227,7 +227,7 @@
         android:fontFamily="@font/centurygothicbold"
         android:layout_alignStart="@id/filterDialogHeader"
         android:layout_below="@id/bbDialog"
-        android:paddingTop="25dp"/>
+        android:layout_marginTop="25dp"/>
 
     <!--Una stella-->
 
@@ -325,7 +325,7 @@
         android:layout_width="100dp"
         android:layout_height="20dp"
         android:layout_marginTop="15dp"
-        android:background="@drawable/quattrostelle"
+        android:background="@drawable/cinquestelle"
         android:layout_toEndOf="@id/radior2"
         android:layout_below="@id/star4ImgDialog"
         android:layout_marginStart="20dp"/>
@@ -357,11 +357,11 @@
 
     <EditText
         android:id="@+id/da"
-        android:layout_width="85dp"
-        android:layout_height="40dp"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/centurygothicregular"
         android:hint="Da  €"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:textSize="15sp"
         android:theme="@style/EditText_blue"
         android:layout_below="@id/priceDialog"
@@ -370,11 +370,11 @@
 
     <EditText
         android:id="@+id/a"
-        android:layout_width="85dp"
-        android:layout_height="40dp"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/centurygothicregular"
         android:hint="A  €"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:textSize="15sp"
         android:theme="@style/EditText_blue"
         android:layout_toEndOf="@id/da"
@@ -389,15 +389,55 @@
         android:background="@drawable/disable_search_button"
         android:layout_below="@id/da"
         android:enabled="false"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:layout_marginStart="20dp"/>
+
     <ListView
         android:id="@+id/lv1"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/localitatext"
         android:layout_alignStart="@id/localitatext"
         android:layout_alignEnd="@id/localitatext"
+        android:background="#FFFFFF"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/distanzatitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"/>
+        android:layout_below="@id/terminetext"
+        android:layout_alignStart="@id/terminetext"
+        android:fontFamily="@font/centurygothicbold"
+        android:text="Raggio di ricerca"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="invisible"/>
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        style="@style/SeekBarWithoutSteps"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        android:layout_below="@id/distanzatitle"
+        android:layout_marginTop="10dp"
+        android:layout_alignStart="@id/terminetext"
+        android:max="20"
+        android:thumbTint="@color/blue"
+        android:visibility="invisible"
+        android:progress="0" />
+
+    <TextView
+        android:id="@+id/distanzavalue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0m"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:visibility="invisible"
+        android:fontFamily="@font/centurygothicregular"
+        android:layout_alignBottom="@id/seekBar"
+        android:layout_toEndOf="@id/seekBar"/>
 </RelativeLayout>

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".view.SchedaStruttura" >
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_blue" />
+
+        <RatingBar
+            android:id="@+id/ratingrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:layout_marginStart="16dp"
+            android:theme="@style/Rating_orange"
+            android:layout_below="@id/recyclefoto"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            style="?android:attr/ratingBarStyleSmall"/>
+
+        <TextView
+            android:id="@+id/ind"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="INDIRIZZO"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="5dp"
+            android:layout_below="@id/mapgroup"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/centurygothicbold"
+            android:textColor="@color/blue"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:id="@+id/icondistance"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/icondistance"
+            android:layout_alignStart="@id/ind"
+            android:layout_below="@id/ind"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/distanzaScheda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/icondistance"
+            android:layout_alignBottom="@id/icondistance"
+            android:text="-"
+            android:fontFamily="@font/centurygothicregular"
+            android:layout_toEndOf="@id/icondistance"
+            android:visibility="invisible"
+            android:textSize="@dimen/_10sdp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/prezzo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PREZZO"
+            android:layout_marginStart="5dp"
+            android:layout_toStartOf="@id/barra"
+            android:layout_alignBottom="@id/ratingrow"
+            android:layout_alignTop="@id/ratingrow"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/recyclefoto"
+            android:fontFamily="@font/centurygothicbold"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/barra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="|"
+            android:layout_below="@id/recyclefoto"
+            android:layout_alignBottom="@id/ratingrow"
+            android:layout_toStartOf="@id/ratingrow"
+            android:layout_marginStart="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/orange"
+            android:fontFamily="@font/centurygothicbold" />
+
+        <TextView
+            android:id="@+id/barra2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="|"
+            android:layout_below="@id/recyclefoto"
+            android:layout_toEndOf="@id/ratingrow"
+            android:layout_alignBottom="@id/ratingrow"
+            android:layout_marginStart="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/orange"
+            android:fontFamily="@font/centurygothicbold" />
+
+        <RelativeLayout
+            android:id="@+id/mapgroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recyclefoto"
+            android:layout_alignTop="@id/ratingrow"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentEnd="true">
+            <Button
+                android:id="@+id/showPositionButton"
+                android:layout_width="35dp"
+                android:layout_height="30dp"
+                android:background="@drawable/posizionemap"
+                android:layout_centerHorizontal="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Visualizza posizione\nsu mappa"
+                android:textAlignment="center"
+                android:layout_below="@id/showPositionButton"
+                android:textSize="10sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/centurygothicregular"
+                tools:ignore="SmallSp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="INFORMAZIONI"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="5dp"
+            android:layout_below="@id/distanzaScheda"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/centurygothicregular"
+            android:textColor="@color/black"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/logintxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/info"
+            android:text="Per lasciare una recensione effettua il login."
+            android:textSize="15sp"
+            android:textColor="@color/orange"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/centurygothicbold"/>
+
+        <TextView
+            android:id="@+id/recetxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/info"
+            android:text="Se desideri puoi lasciare una recensione."
+            android:textSize="15sp"
+            android:textColor="@color/orange"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/centurygothicbold"
+            android:visibility="invisible"/>
+
+        <Button
+            android:id="@+id/recebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/recebtn"
+            android:layout_below="@id/recetxt"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
+            android:visibility="invisible"/>
+
+        <Button
+            android:id="@+id/loginbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/accedibtnrece"
+            android:layout_below="@id/recetxt"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/textfiltra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filtra le recensioni"
+            android:textSize="18sp"
+            android:fontFamily="@font/centurygothicbold"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/orange"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="5dp"
+            android:layout_below="@id/loginbtn"/>
+
+        <ImageView
+            android:id="@+id/star1ImgDialog"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/unastella"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="5dp"
+            android:layout_below="@id/textfiltra"/>
+
+        <RadioButton
+            android:id="@+id/radior1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toEndOf="@id/star1ImgDialog"
+            android:layout_marginEnd="5dp"
+            android:layout_alignBottom="@id/star1ImgDialog"
+            android:layout_alignTop="@id/star1ImgDialog"
+            android:checked="false"
+            android:theme="@style/RadioBotton_blue"/>
+
+        <ImageView
+            android:id="@+id/star2ImgDialog"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/duestelle"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="5dp"
+            android:layout_below="@id/star1ImgDialog"/>
+
+        <RadioButton
+            android:id="@+id/radior2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toEndOf="@id/star2ImgDialog"
+            android:layout_marginEnd="5dp"
+            android:layout_alignBottom="@id/star2ImgDialog"
+            android:layout_alignTop="@id/star2ImgDialog"
+            android:checked="false"
+            android:theme="@style/RadioBotton_blue"/>
+
+        <ImageView
+            android:id="@+id/star3ImgDialog"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/trestelle"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="5dp"
+            android:layout_below="@id/star2ImgDialog"/>
+
+        <RadioButton
+            android:id="@+id/radior3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toEndOf="@id/star3ImgDialog"
+            android:layout_marginEnd="5dp"
+            android:layout_alignBottom="@id/star3ImgDialog"
+            android:layout_alignTop="@id/star3ImgDialog"
+            android:checked="false"
+            android:theme="@style/RadioBotton_blue"/>
+
+        <ImageView
+            android:id="@+id/star4ImgDialog"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/quattrostelle"
+            android:layout_toEndOf="@id/radior1"
+            android:layout_below="@id/textfiltra"
+            android:layout_marginStart="15dp"/>
+
+        <RadioButton
+            android:id="@+id/radior4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toEndOf="@id/star4ImgDialog"
+            android:layout_marginEnd="5dp"
+            android:layout_alignBottom="@id/star4ImgDialog"
+            android:layout_alignTop="@id/star4ImgDialog"
+            android:checked="false"
+            android:theme="@style/RadioBotton_blue"/>
+
+        <ImageView
+            android:id="@+id/star5ImgDialog"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/cinquestelle"
+            android:layout_toEndOf="@id/radior2"
+            android:layout_below="@id/star4ImgDialog"
+            android:layout_marginStart="15dp"/>
+
+        <RadioButton
+            android:id="@+id/radior5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toEndOf="@id/star5ImgDialog"
+            android:layout_marginEnd="5dp"
+            android:layout_alignBottom="@id/star5ImgDialog"
+            android:layout_alignTop="@id/star5ImgDialog"
+            android:checked="false"
+            android:theme="@style/RadioBotton_blue"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerece"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/radior3"
+            tools:listitem="@layout/row_recensionestruttura">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclefoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/toolbar"
+            tools:listitem="@layout/row_fotostruttura">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </RelativeLayout>
+
+</ScrollView>

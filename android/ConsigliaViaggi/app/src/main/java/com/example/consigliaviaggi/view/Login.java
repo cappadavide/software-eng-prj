@@ -15,7 +15,6 @@ import com.example.consigliaviaggi.PresenterToViewLogin;
 import com.example.consigliaviaggi.R;
 import com.example.consigliaviaggi.ToPresenterLogin;
 import com.example.consigliaviaggi.presenter.LoginPresenter;
-
 import java.util.Objects;
 
 public class Login extends AppCompatActivity implements View.OnClickListener, PresenterToViewLogin {
@@ -89,12 +88,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Pr
             presenter.setUserAsLogged(true,this);
 
             if(presenter.obtainSharedPreferencesToFilterActivity(this).equals("utente")) {
+
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 this.finish();
             }
             else if(presenter.obtainSharedPreferencesToFilterActivity(this).equals("struttura")){
+
                 Intent intent = new Intent(this, SchedaStruttura.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);

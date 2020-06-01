@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".view.RicercaAlberghi">
+    tools:context=".view.RicercaAttrazioni">
 
     <include
         android:id="@+id/toolbar"
@@ -22,11 +22,10 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/search"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
-        android:visibility="visible"
         app:menu="@menu/menu_ricerca" />
 
 </RelativeLayout>

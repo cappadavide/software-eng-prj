@@ -3,9 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_centerInParent="true"
-    android:layout_gravity="center"
+    android:layout_height="wrap_content"
     tools:context=".view.Informazioni">
 
     <include
@@ -14,27 +12,26 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="350dp"
-        android:layout_height="230dp"
+        android:layout_width="300dp"
+        android:layout_height="210dp"
+        android:background="@drawable/qualitylogo"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/logo"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="100dp"/>
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/sifonnpro"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/centurygothicbold"
         android:text="Corso di Ingegneria del Software I \nUniversità di Napoli Federico II
 \n\nSviluppato da:
 \nGiuseppina Russo
 \nDavide Somma
 \nIsabella Tieri
 \n\nProfessore: Sergio Di Martino"
-        android:textSize="18dp"
+        android:textSize="16sp"
         android:layout_below="@id/imageView"
         android:layout_centerHorizontal="true"/>
-
 
 </RelativeLayout>

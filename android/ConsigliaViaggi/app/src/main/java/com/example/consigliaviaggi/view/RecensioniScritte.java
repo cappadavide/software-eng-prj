@@ -1,31 +1,25 @@
 package com.example.consigliaviaggi.view;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.consigliaviaggi.PresenterToViewRecensioniScritte;
 import com.example.consigliaviaggi.R;
-import com.example.consigliaviaggi.ToPresenterRecensioniScritte;
 import com.example.consigliaviaggi.model.Recensione;
+import com.example.consigliaviaggi.ToPresenterRecensioniScritte;
 import com.example.consigliaviaggi.presenter.RecensioniScrittePresenter;
 import com.example.consigliaviaggi.presenter.utils.CardAdapter;
-
 import java.util.ArrayList;
 
-
 public class RecensioniScritte extends Fragment implements PresenterToViewRecensioniScritte {
-
 
     private TextView effettuaIlLogin, nessunaRecensioneScritta;
     private ToPresenterRecensioniScritte presenter;

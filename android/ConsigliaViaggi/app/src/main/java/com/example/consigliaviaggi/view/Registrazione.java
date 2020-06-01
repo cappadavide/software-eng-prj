@@ -16,7 +16,6 @@ import com.example.consigliaviaggi.PresenterToViewRegistrazione;
 import com.example.consigliaviaggi.R;
 import com.example.consigliaviaggi.ToPresenterRegistrazione;
 import com.example.consigliaviaggi.presenter.RegistrazionePresenter;
-
 import java.util.Objects;
 
 public class Registrazione extends AppCompatActivity implements View.OnClickListener, PresenterToViewRegistrazione {

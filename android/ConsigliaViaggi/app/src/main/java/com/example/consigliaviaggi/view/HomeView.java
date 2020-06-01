@@ -16,27 +16,21 @@ public class HomeView extends Fragment {
         View rootView = inflater.inflate(R.layout.activity_homeview, container, false);
 
         Button alberghiButton = rootView.findViewById(R.id.alberghi);
-        alberghiButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-
-            }
+        alberghiButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), RicercaAlberghi.class);
+            startActivity(intent);
         });
 
         Button ristorantiButton = rootView.findViewById(R.id.ristoranti);
-        ristorantiButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-
-            }
+        ristorantiButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), RicercaRistoranti.class);
+            startActivity(intent);
         });
 
         Button attrazioniButton = rootView.findViewById(R.id.attrazioni);
-        attrazioniButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-
-            }
+        attrazioniButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), RicercaAttrazioni.class);
+            startActivity(intent);
         });
 
         return rootView;

@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    tools:context=".view.HomeView">
 
     <TextView
         android:id="@+id/searchText"
@@ -11,7 +12,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/sifonnpro"
         android:text="Cosa cerchi?"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:layout_marginStart="5dp"
@@ -20,32 +21,32 @@
     <ImageView
         android:id="@+id/homeImage"
         android:layout_width="match_parent"
-        android:layout_height="155dp"
+        android:layout_height="170dp"
         android:layout_alignParentTop="true"
         android:background="@drawable/tophome" />
 
     <Button
         android:id="@+id/attrazioni"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="165dp"
         android:background="@drawable/attrazioni"
         android:layout_below="@id/alberghi"/>
 
     <Button
         android:id="@+id/ristoranti"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="165dp"
         android:background="@drawable/ristoranti"
         android:layout_below="@id/attrazioni"/>
 
     <Button
         android:id="@+id/alberghi"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="165dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/alberghi"
         android:layout_below="@id/searchText"/>
 
