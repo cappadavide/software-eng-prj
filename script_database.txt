@@ -41,7 +41,7 @@ ALTER TABLE recensione ADD CONSTRAINT valutazionecheck CHECK(valutazione=-1 OR v
 ALTER TABLE recensione ADD CONSTRAINT ratingcheck CHECK(rating>=1 AND rating<=5);
 ALTER TABLE struttura ADD CONSTRAINT categoriacheck CHECK(categoria='alberghi' AND (sottocategoria='hotel' OR sottocategoria='bb' OR sottocategoria='appartamento' OR sottocategoria='altro') OR categoria='ristoranti' AND (sottocategoria='fastfood' OR sottocategoria='pizzeria' OR sottocategoria='ristorante' OR sottocategoria='altro') OR categoria='attrazioni' AND (sottocategoria='zoo' OR sottocategoria='parcogiochi' OR sottocategoria='museo' OR sottocategoria='altro'));
 ALTER TABLE utente ADD CONSTRAINT emailcheck CHECK(email ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$');
-ALTER TABLE utente ADD CONSTRAINT usernamecheck CHECK(username ~* '^[A-Za-z0-9._%-]+[._][A-Za-z0-9]+$');
+ALTER TABLE utente ADD CONSTRAINT usernamecheck CHECK(username ~* '^[A-Za-z0-9]+[.][A-Za-z0-9]+$');
 ALTER TABLE struttura ADD CONSTRAINT prezzocheck CHECK(prezzoa<=prezzoda);
 
 CREATE OR REPLACE FUNCTION eliminarecensione() RETURNS trigger AS $eliminarecensione$ BEGIN DELETE FROM recensione WHERE valutazione=0; RETURN NULL; END; $eliminarecensione$ LANGUAGE plpgsql;

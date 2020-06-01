@@ -3,6 +3,7 @@ package com.example.consigliaviaggi.presenter;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 import com.example.consigliaviaggi.PresenterToUtenteDAO;
 import com.example.consigliaviaggi.PresenterToViewImpostazioni;
 import com.example.consigliaviaggi.ToPresenterImpostazioni;
@@ -19,6 +20,12 @@ public class ImpostazioniPresenter implements ToPresenterImpostazioni {
         this.view = view;
     }
 
+    @Override
+    public void showError() {
+        Toast.makeText(view.getContext(), "Controllare lo stato della connessione.", Toast.LENGTH_LONG).show();
+        view.notMakeLogout();
+    }
+
     public void logout(String username, String password){
 
         dao.logout(username,password);
@@ -26,10 +33,11 @@ public class ImpostazioniPresenter implements ToPresenterImpostazioni {
 
     public Context getContext(){ return view.getContext(); }
 
-    public void setSharedPreferencesLogout(SharedPreferences sharedPreferences){
+    public void setSharedPreferencesLogout(SharedPreferences sharedPreferences,int flag){
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("key", "LOGOUT");
+        if(flag==1)editor.putString("key", "logout");
+        if(flag==2)editor.putString("key", "login");
         editor.apply();
     }
 

@@ -4,15 +4,12 @@ import android.content.Context;
 import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.consigliaviaggi.PresenterToMapboxAPI;
 import com.example.consigliaviaggi.SearchPresenter;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.geometry.LatLng;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -56,9 +53,9 @@ public class MapboxAPI implements PresenterToMapboxAPI {
 
         JsonObjectRequest jsr = new JsonObjectRequest(Request.Method.GET, url,null,
                 response -> presenterMap.createLocationSuggestions(response,searchTerm), error -> {
-                    Log.e("Volley","Error");
-                    presenterMap.showError();
-                });
+            Log.e("Volley","Error");
+            presenterMap.showError();
+        });
         jsr.setTag(TAG);
         queue.add(jsr);
     }
@@ -89,9 +86,9 @@ public class MapboxAPI implements PresenterToMapboxAPI {
                     }
 
                 }, error -> {
-                    Log.e("Volley","Error");
-                    presenterMap.showError();
-                });
+            Log.e("Volley","Error");
+            presenterMap.showError();
+        });
         queue.add(jsr);
     }
 
@@ -113,9 +110,9 @@ public class MapboxAPI implements PresenterToMapboxAPI {
                     }
 
                 }, error -> {
-                    Log.e("Volley","Error");
-                    presenterMap.showError();
-                });
+            Log.e("Volley","Error");
+            presenterMap.showError();
+        });
         queue.add(jsr);
     }
 

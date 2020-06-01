@@ -59,7 +59,7 @@ public class UtenteDAO implements PresenterToUtenteDAO {
     public void updateUserAsLogged(String username, String password){
 
         RequestQueue queue = Volley.newRequestQueue(loginPresenter.getContext());
-        String url="https://q8rvy0t9c8.execute-api.eu-west-3.amazonaws.com/test/database?op=logga_utente&username="+username+"&password="+password;
+        String url="https://q8rvy0t9c8.execute-api.eu-west-3.amazonaws.com/test/database?op=log_in&username="+username+"&password="+password;
         JsonArrayRequest jsr = new JsonArrayRequest(Request.Method.GET, url,null,
                 response -> {
 
@@ -81,7 +81,7 @@ public class UtenteDAO implements PresenterToUtenteDAO {
     public void logout(String username, String password){
 
         RequestQueue queue = Volley.newRequestQueue(impostazioniPresenter.getContext());
-        String url="https://q8rvy0t9c8.execute-api.eu-west-3.amazonaws.com/test/database?op=logout&username="+username+"&password="+password;
+        String url="https://q8rvy0t9c8.execute-api.eu-west-3.amazonaws.com/test/database?op=log_out&username="+username+"&password="+password;
         JsonArrayRequest jsr = new JsonArrayRequest(Request.Method.GET, url,null,
                 response -> {
 
@@ -95,7 +95,7 @@ public class UtenteDAO implements PresenterToUtenteDAO {
                     }
                 }, error -> {
             Log.e("Volley","Error");
-            loginPresenter.showError();
+            impostazioniPresenter.showError();
         });
         queue.add(jsr);
     }

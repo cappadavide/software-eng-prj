@@ -51,12 +51,13 @@ public class RecensioneDAO implements PresenterToRecensioneDAO {
                         scriveRecensionePresenter.reviewDone();
                     }
                     catch (JSONException e) {
+                        scriveRecensionePresenter.showError();
                         e.printStackTrace();
                     }
                 }, error -> {
-                    Log.e("Volley","Error");
-                    scriveRecensionePresenter.showError();
-                });
+            Log.e("Volley","Error");
+            scriveRecensionePresenter.showError();
+        });
         queue.add(jsr);
     }
 
@@ -89,9 +90,9 @@ public class RecensioneDAO implements PresenterToRecensioneDAO {
                         e.printStackTrace();
                     }
                 }, error -> {
-                    Log.e("Volley","Error");
-                    recensioniScrittePresenter.showError();
-                });
+            Log.e("Volley","Error");
+            recensioniScrittePresenter.showError();
+        });
         queue.add(jsr);
     }
 
@@ -145,9 +146,9 @@ public class RecensioneDAO implements PresenterToRecensioneDAO {
                         e.printStackTrace();
                     }
                 }, error -> {
-                    Log.e("Volley","Error");
-                    schedaStrutturaPresenter.showError();
-                });
+            Log.e("Volley","Error");
+            schedaStrutturaPresenter.showError();
+        });
         queue.add(jsr);
     }
 }

@@ -50,9 +50,9 @@ public class FotoDAO implements PresenterToFotoDAO {
                         e.printStackTrace();
                     }
                 }, error -> {
-                    Log.e("Volley","Error");
-                    presenter.showError();
-                });
+            Log.e("Volley","Error");
+            presenter.showError();
+        });
         queue.add(jsr);
     }
 }
