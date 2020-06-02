@@ -9,6 +9,6 @@ public interface ToPresenterImpostazioni {
     Context getContext();
     void setSharedPreferencesLogin(Context context);
     String obtainUserBySharedPreferences(SharedPreferences sharedPreferences, int flag);
-    void setSharedPreferencesLogout(SharedPreferences sharedPreferences);
+    void setSharedPreferencesLogout(SharedPreferences sharedPreferences, int flag);
+    void showError();
 }
-
