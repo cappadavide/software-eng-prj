@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1300.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presenter.RecensionePresenter">
+    <children>
+      <MenuBar fx:id="menuBar">
+        <menus>
+          <Menu mnemonicParsing="false" text="Altro..">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#visualizzaInformazioni" text="Informazioni" />
+                  <MenuItem mnemonicParsing="false" onAction="#logout" text="Esci" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Button fx:id="backButton" mnemonicParsing="false" onAction="#tornaAlMenu" styleClass="backButton" stylesheets="@../consigliaviaggi/css/style.css" />
+      <Label fx:id="message">
+         <font>
+            <Font name="Microsoft New Tai Lue" size="24.0" />
+         </font>
+         <padding>
+            <Insets bottom="20.0" />
+         </padding>
+         <VBox.margin>
+            <Insets left="530.0" />
+         </VBox.margin>
+      </Label>
+      <BorderPane maxHeight="-Infinity" prefHeight="564.0" prefWidth="1300.0" style="-fx-background-color: #EBEBEB;">
+         <center>
+            <JFXListView fx:id="listaRecensioni" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="789.0" style="-fx-background-color: #EBEBEB;" styleClass="jfx-list-view" stylesheets="@../consigliaviaggi/css/recensioni.css" BorderPane.alignment="TOP_CENTER">
+               <BorderPane.margin>
+               </BorderPane.margin></JFXListView>
+         </center>
+         <top>
+            <Label fx:id="noRecensioniPendenti" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Microsoft New Tai Lue" size="28.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </Label>
+         </top>
+         <bottom>
+            <GridPane fx:id="gridPaneHide" stylesheets="@../consigliaviaggi/css/recensioni.css" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="expandButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="164.0" prefWidth="1300.0" styleClass="expandButton" stylesheets="@../consigliaviaggi/css/recensioni.css">
+                     <GridPane.margin>
+                        <Insets bottom="110.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </bottom>
+      </BorderPane>
+    </children>
+</VBox>

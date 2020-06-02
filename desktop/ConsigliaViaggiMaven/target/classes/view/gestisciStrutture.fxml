@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox id="VBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presenter.MenuPresenter">
+   <children>
+      <MenuBar fx:id="menuBar" layoutX="-2.0" layoutY="-3.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="640.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Aiuto..">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#visualizzaInformazioni" text="Informazioni" />
+                  <MenuItem mnemonicParsing="false" onAction="#logout" text="Esci" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Button fx:id="backButton" mnemonicParsing="false" onAction="#tornaAlMenu" styleClass="backButton" stylesheets="@../consigliaviaggi/css/style.css">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin></Button>
+      <BorderPane prefHeight="800.0" prefWidth="1280.0">
+         <top>
+            <Text fx:id="benvenuto" strokeWidth="0.0" text="Scegli tra:" textAlignment="CENTER" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Microsoft New Tai Lue" size="36.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets bottom="30.0" />
+               </BorderPane.margin>
+            </Text>
+         </top>
+         <center>
+            <GridPane stylesheets="@../consigliaviaggi/css/style.css" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="270.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="206.0" minHeight="10.0" prefHeight="162.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#aggiungiStruttura" prefHeight="100.0" prefWidth="100.0" styleClass="aggiungiStrutturaButton" stylesheets="@../consigliaviaggi/css/style.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets top="20.0" />
+                     </GridPane.margin></Button>
+                  <Button fx:id="ricercaStrutturaButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ricercaStruttura" prefHeight="100.0" prefWidth="100.0" styleClass="ricercaStrutturaButton" stylesheets="@../consigliaviaggi/css/style.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets top="20.0" />
+                     </GridPane.margin></Button>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Inserisci nuove strutture all'interno del Database" textAlignment="CENTER" wrappingWidth="194.193359375" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Segoe UI Italic" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets top="40.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Modifica o elimina strutture già esistenti all'interno del Database" wrappingWidth="264.193359375" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Segoe UI Italic" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets top="40.0" />
+                     </GridPane.margin>
+                  </Text>
+               </children>
+            </GridPane>
+         </center>
+      </BorderPane>
+    </children>
+</VBox>
