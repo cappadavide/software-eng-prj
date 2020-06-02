@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.consigliaviaggi">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <supports-screens
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:xlargeScreens="true"
+        android:resizeable="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".view.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".view.MainActivity">
+        </activity>
+
+        <activity
+            android:name=".view.ListaStrutture">
+        </activity>
+
+        <activity
+            android:name=".view.SchedaRecensione">
+        </activity>
+
+        <activity
+            android:name=".view.Login">
+        </activity>
+
+        <activity
+            android:name=".view.Informazioni">
+        </activity>
+
+        <activity
+            android:name=".view.Map">
+        </activity>
+
+        <activity
+            android:name=".view.ScriveRecensione"
+            android:parentActivityName=".view.SchedaStruttura"/>
+
+        <activity
+            android:name=".view.SchedaStruttura"
+            android:parentActivityName=".view.ListaStrutture"/>
+
+        <activity
+            android:name=".view.Registrazione"
+            android:parentActivityName=".view.Login" />
+
+        <activity
+            android:name=".view.RicercaAttrazioni"
+            android:parentActivityName=".view.MainActivity" />
+
+        <activity
+            android:name=".view.RicercaAlberghi"
+            android:parentActivityName=".view.MainActivity" />
+
+        <activity
+            android:name=".view.RicercaRistoranti"
+            android:parentActivityName=".view.MainActivity" />
+
+    </application>
+
+</manifest>
