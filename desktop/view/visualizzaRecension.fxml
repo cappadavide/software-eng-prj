@@ -7,14 +7,18 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.Rating?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1300.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presenter.VisualizzaRecensionePresenter">
@@ -29,22 +33,22 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button fx:id="backButton" mnemonicParsing="false" onAction="#clickBack" styleClass="backButton" stylesheets="@../consigliaviaggi/css/style.css" />
+      <Button fx:id="backButton" mnemonicParsing="false" onAction="#tornaAllaListaDelleRecensioni" styleClass="backButton" stylesheets="@../consigliaviaggi/css/style.css" />
       <Label fx:id="labelID" text="Label" />
       <BorderPane prefHeight="740.0" prefWidth="1280.0">
          <center>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="288.0" prefWidth="776.0" BorderPane.alignment="CENTER">
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="288.0" prefWidth="780.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="203.0" minHeight="10.0" prefHeight="113.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ScrollBar orientation="VERTICAL" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                  <Label text="Utente: " GridPane.valignment="TOP">
+                  <Label text="Utente: " GridPane.valignment="CENTER">
                      <font>
                         <Font name="Segoe UI Bold" size="24.0" />
                      </font>
@@ -52,7 +56,7 @@
                         <Insets />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="labelUsernameUtente" text="Label" GridPane.valignment="TOP">
+                  <Label fx:id="labelUsernameUtente" text="Label" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets left="100.0" />
                      </GridPane.margin>
@@ -60,25 +64,27 @@
                         <Font name="Segoe UI" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelStrutturaId" text="Label" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                     <font>
-                        <Font name="Segoe UI" size="24.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="200.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Struttura: " GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label text="Struttura: ">
+                           <font>
+                              <Font name="Segoe UI Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="26.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                        <Label fx:id="labelStrutturaId" text="Label">
+                           <font>
+                              <Font name="Segoe UI" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label text="Titolo: " GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Segoe UI Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Titolo: " GridPane.valignment="BOTTOM">
-                     <font>
-                        <Font name="Segoe UI Bold" size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="labelTitolo" text="Label" GridPane.valignment="BOTTOM">
+                  <Label fx:id="labelTitolo" text="Label" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Segoe UI" size="24.0" />
                      </font>
@@ -86,7 +92,7 @@
                         <Insets left="90.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Rating: " GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                  <Label text="Rating: " GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Segoe UI Bold" size="24.0" />
                      </font>
@@ -97,7 +103,7 @@
                         <Insets right="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Descrizione: " GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label text="Descrizione: " GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets top="10.0" />
                      </GridPane.margin>
@@ -105,16 +111,24 @@
                         <Font name="Segoe UI Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelCorpo" text="Label" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                     <font>
-                        <Font name="Segoe UI Italic" size="24.0" />
-                     </font>
-                  </Label>
-                  <Rating fx:id="ratingField" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="176.0" rating="0.0" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                  <Rating fx:id="ratingField" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="176.0" rating="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets bottom="5.0" left="250.0" />
                      </GridPane.margin>
                   </Rating>
+                  <ScrollPane prefHeight="177.0" prefWidth="776.0" style="-fx-background-color: white;" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                     <content>
+                        <AnchorPane prefHeight="193.0" prefWidth="760.0" style="-fx-background-color: white;">
+                           <children>
+                              <Text fx:id="labelCorpo" layoutX="1.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="759.0">
+                                 <font>
+                                    <Font name="Segoe UI" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
                </children>
                <BorderPane.margin>
                   <Insets top="50.0" />

@@ -1,12 +1,16 @@
 package presenter;
 
+import DAO.DBManager;
 import DAO.RecensioneDAO;
 import model.RecensioneModel;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,34 +25,29 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.Rating;
+import interfaces.MenuUtils;
+import java.sql.Connection;
 
-public class VisualizzaRecensionePresenter implements Initializable {
+public class VisualizzaRecensionePresenter implements Initializable, MenuUtils {
 
-    private RecensioneModel recensione;
-
-    @FXML
-    private Label labelUsernameUtente;
-
-    @FXML
-    private Label labelStrutturaId;
+    private RecensioneModel recensioneDaVisualizzare;
+    private RecensioneDAO recensioneDAO;
 
     @FXML
-    private Label labelTitolo;
+    private Label labelUsernameUtente, labelStrutturaId, labelTitolo, labelID;
 
     @FXML
     private Rating ratingField;
 
     @FXML
-    private Label labelCorpo;
-
-    @FXML
-    private Label labelID;
+    private Text labelCorpo;
 
     @FXML
     private GridPane gridPane;
@@ -61,9 +60,12 @@ public class VisualizzaRecensionePresenter implements Initializable {
 
     @FXML
     private MenuBar menuBar;
+    
+    private ResultSet idStruttura;
 
-    public void initData(RecensioneModel rs) throws IOException {
-        this.recensione = rs;
+    public void initData(RecensioneModel recensione) throws IOException {
+        this.recensioneDaVisualizzare = recensione;
+        recensioneDAO = new RecensioneDAO();
         labelUsernameUtente.setText(recensione.getUsernameUtente());
         labelStrutturaId.setText(recensione.getStrutturaId());
         labelTitolo.setText(recensione.getTitolo());
@@ -78,94 +80,101 @@ public class VisualizzaRecensionePresenter implements Initializable {
         // TODO
     }
 
+    @Override
     @FXML
-    private void logout(ActionEvent event) throws IOException {
-        System.out.println("Hai cliccato Esci");
-        Parent menuPrincipale = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
-        Scene menuPrincipaleView = new Scene(menuPrincipale);
+    public void logout(ActionEvent event) throws IOException {
+        Parent login = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
+        Scene loginView = new Scene(login);
 
         Stage window = (Stage) menuBar.getScene().getWindow();
-        window.setScene(menuPrincipaleView);
+        window.setScene(loginView);
         window.show();
     }
 
+    @Override
     @FXML
-    private void visualizzaInformazioni(final ActionEvent event) throws IOException {
-        System.out.println("Hai cliccato Informazioni");
-        Parent informazioni = FXMLLoader.load(getClass().getResource("/view/informazioni.fxml"));
-        Scene informazioniView = new Scene(informazioni);
+    public void visualizzaInformazioni(final ActionEvent event){
+        try {
+            Parent informazioni = FXMLLoader.load(getClass().getResource("/view/informazioni.fxml"));
+            Scene informazioniView = new Scene(informazioni);
+            
+            Stage window = new Stage();
+            window.setScene(informazioniView);
+            window.setTitle("Informazioni");
+            window.show();
+        } catch (IOException ex) {
+            mostraEccezioneDialog("Errore", ex.getMessage());
+        }
+    }
+    
+    private Alert creaDialog(String titolo, String corpo) {
+        Alert dialog = new Alert(Alert.AlertType.NONE);
+        dialog.setHeaderText(titolo);
+        dialog.setContentText(corpo);
+        javafx.geometry.Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        dialog.setX((bounds.getMaxX() / 2) - 150);
+        dialog.setY((bounds.getMaxY() / 2) - 100);
 
-        Stage window = new Stage();
-        window.setScene(informazioniView);
-        window.setTitle("Informazioni");
-        window.show();
+        DialogPane dialogPane = dialog.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("/consigliaviaggi/css/alertStruttura.css").toExternalForm());
+        dialog.initStyle(StageStyle.UNDECORATED);
+
+        return dialog;
+    }
+
+    private void mostraEccezioneDialog(String titolo, String corpo) {
+        Alert dialogEccezione = creaDialog(titolo, corpo);
+
+        ButtonType buttonOk = new ButtonType("Ok");
+        dialogEccezione.getButtonTypes().setAll(buttonOk);
+        Optional<ButtonType> result = dialogEccezione.showAndWait();
     }
 
     @FXML
-    private void clickBack(ActionEvent event) throws IOException {
-        System.out.println("Hai cliccato Indietro");
-        Parent gestisciStrutture = FXMLLoader.load(getClass().getResource("/view/listaRecensioni.fxml"));
-        Scene gestisciStruttureView = new Scene(gestisciStrutture);
+    private void tornaAllaListaDelleRecensioni(ActionEvent event) throws IOException {
+        Parent listaRecensioni = FXMLLoader.load(getClass().getResource("/view/listaRecensioni.fxml"));
+        Scene listaRecensioniView = new Scene(listaRecensioni);
 
         Stage window = (Stage) menuBar.getScene().getWindow();
-        window.setScene(gestisciStruttureView);
+        window.setScene(listaRecensioniView);
         window.show();
     }
 
     @FXML
     private void mostraApprovaDialog(ActionEvent event) throws IOException, SQLException {
-        Alert dialog = new Alert(Alert.AlertType.NONE);
-        dialog.setHeaderText("Valutazione recensione");
-        dialog.setContentText("Vuoi confermare l'operazione?");
-        javafx.geometry.Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        dialog.setX((bounds.getMaxX() / 2) - 150);
-        dialog.setY((bounds.getMaxY() / 2) - 100);
-
-        DialogPane dialogPane = dialog.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("/consigliaviaggi/css/alert.css").toExternalForm());
-        dialog.initStyle(StageStyle.UNDECORATED);
-
+        Alert approvaDialog = creaDialog("Valutazione recensione","Vuoi confermare l'operazione?");
+        Connection conn = DBManager.getConnection(true);
         ButtonType buttonSi = new ButtonType("Si");
         ButtonType buttonNo = new ButtonType("No");
-        dialog.getButtonTypes().setAll(buttonSi, buttonNo);
-        Optional<ButtonType> result = dialog.showAndWait();
+        approvaDialog.getButtonTypes().setAll(buttonSi, buttonNo);
+        Optional<ButtonType> result = approvaDialog.showAndWait();
         if (result.get() == buttonSi) {
-            RecensioneDAO model = new RecensioneDAO();
-            model.approvaRecensione(labelID.getText());
+            recensioneDAO.approvaRecensione(conn,labelID.getText());
+            idStruttura = recensioneDAO.ricavaIdDellaStruttura(conn,recensioneDaVisualizzare.getStrutturaId());
+            while (idStruttura.next()) {
+                    recensioneDAO.aggiornaRatingStruttura(conn,idStruttura.getString("id"));
+                }  
             visualizzaListaRecensioni();
-        } else {
-            System.out.println("Hai cliccato no");
         }
+        conn.close();
     }
 
     @FXML
     private void mostraDeclinaDialog(ActionEvent event) throws IOException, SQLException {
-        Alert dialog = new Alert(Alert.AlertType.NONE);
-        dialog.setHeaderText("Valutazione recensione");
-        dialog.setContentText("Vuoi confermare l'operazione?");
-        javafx.geometry.Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        dialog.setX((bounds.getMaxX() / 2) - 150);
-        dialog.setY((bounds.getMaxY() / 2) - 100);
-
-        DialogPane dialogPane = dialog.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("/consigliaviaggi/css/alert.css").toExternalForm());
-        dialog.initStyle(StageStyle.UNDECORATED);
-
+        Alert declinaDialog = creaDialog("Valutazione recensione","Vuoi confermare l'operazione?");
+        Connection conn = DBManager.getConnection(true);
         ButtonType buttonSi = new ButtonType("Si");
         ButtonType buttonNo = new ButtonType("No");
-        dialog.getButtonTypes().setAll(buttonSi, buttonNo);
-        Optional<ButtonType> result = dialog.showAndWait();
+        declinaDialog.getButtonTypes().setAll(buttonSi, buttonNo);
+        Optional<ButtonType> result = declinaDialog.showAndWait();
+
         if (result.get() == buttonSi) {
-            RecensioneDAO model = new RecensioneDAO();
-            model.declinaRecensione(labelID.getText());
+            recensioneDAO.declinaRecensione(conn, labelID.getText());
             visualizzaListaRecensioni();
-        } else {
-            System.out.println("Hai cliccato no");
         }
     }
 
     private void visualizzaListaRecensioni() throws IOException {
-        System.out.println("Hai cliccato Indietro");
         Parent listaRecensioni = FXMLLoader.load(getClass().getResource("/view/listaRecensioni.fxml"));
         Scene listaRecensioniView = new Scene(listaRecensioni);
         listaRecensioniView.getStylesheets().add(getClass().getResource("/consigliaviaggi/css/style.css").toExternalForm());
@@ -177,7 +186,7 @@ public class VisualizzaRecensionePresenter implements Initializable {
                 .hideAfter(Duration.seconds(3))
                 .position(Pos.BOTTOM_LEFT);
         notifica.title("");
-        notifica.text("La lista Ã¨ stata aggiornata");
+        notifica.text("La lista è stata aggiornata");
         notifica.show();
     }
 

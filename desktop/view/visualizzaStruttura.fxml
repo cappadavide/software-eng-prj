@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.Rating?>
+
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1300.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presenter.VisualizzaStrutturaPresenter">
+   <children>
+      <MenuBar fx:id="menuBar" />
+      <HBox prefWidth="1300.0" style="-fx-background-color: #EBEBEB;">
+         <children>
+            <Rectangle fill="#ffffff00" height="38.0" smooth="false" stroke="TRANSPARENT" strokeType="INSIDE" width="1160.0" />
+            <Label fx:id="idStruttura" text="Label" />
+         </children>
+      </HBox>
+      <BorderPane prefHeight="642.0" prefWidth="1300.0">
+         <top>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="118.0" prefWidth="1300.0" style="-fx-background-color: #EBEBEB;" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <children>
+                  <ImageView fx:id="copertina" fitHeight="249.0" fitWidth="375.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="50.0" top="50.0" />
+                     </HBox.margin></ImageView>
+                  <Rectangle fill="#1f93ff00" height="124.0" stroke="TRANSPARENT" strokeType="INSIDE" width="101.0">
+                     <HBox.margin>
+                        <Insets top="50.0" />
+                     </HBox.margin></Rectangle>
+                  <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="237.0" prefWidth="600.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="49.0" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="123.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="147.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <HBox prefHeight="19.0" prefWidth="600.0">
+                           <children>
+                              <Label fx:id="nomeField" text="Label">
+                                 <font>
+                                    <Font name="Segoe UI" size="30.0" />
+                                 </font>
+                              </Label>
+                              <Rectangle fill="#1f93ff00" height="41.0" smooth="false" stroke="TRANSPARENT" strokeType="INSIDE" width="56.0" />
+                              <Button fx:id="modifica" mnemonicParsing="false" onAction="#modificaStruttura" styleClass="modify" stylesheets="@../consigliaviaggi/css/style.css" />
+                              <Button fx:id="cestino" mnemonicParsing="false" onAction="#eliminaStruttura" styleClass="trash" stylesheets="@../consigliaviaggi/css/style.css" />
+                           </children>
+                        </HBox>
+                        <HBox GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="ratingPrezzo" text="Label">
+                                 <font>
+                                    <Font name="Segoe UI" size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="2.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="21.0" stroke="TRANSPARENT" strokeType="INSIDE" width="28.0" />
+                              <Rating fx:id="ratingButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" partialRating="true" prefHeight="25.0" prefWidth="134.0" rating="0.0" stylesheets="@../consigliaviaggi/css/rating.css">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" />
+                                 </HBox.margin></Rating>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="25.0" stroke="TRANSPARENT" strokeType="INSIDE" width="27.0" />
+                              <Label fx:id="sottocategoriaField" text="Label">
+                                 <font>
+                                    <Font name="Segoe UI" size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="2.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label fx:id="indirizzoField" text="Label" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="informazioniField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="602.0" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets top="20.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Label text="Informazioni" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets top="50.0" />
+                     </HBox.margin>
+                  </GridPane>
+               </children>
+            </HBox>
+         </top>
+         <bottom>
+            <HBox prefHeight="266.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="320.0">
+                     <children>
+                        <Label text="Foto">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="50.0" />
+                           </VBox.margin>
+                        </Label>
+                        <JFXListView fx:id="listaFoto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#zoomFoto" orientation="HORIZONTAL" prefHeight="180.0" prefWidth="1182.0" styleClass="jfx-list-view" stylesheets="@../consigliaviaggi/css/strutture.css">
+                           <VBox.margin>
+                              <Insets left="50.0" top="10.0" />
+                           </VBox.margin>
+                        </JFXListView>
+                        <JFXListView fx:id="listaFoto1" layoutX="60.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#zoomFoto" orientation="HORIZONTAL" prefHeight="180.0" prefWidth="1182.0" styleClass="jfx-list-view" stylesheets="@../consigliaviaggi/css/strutture.css" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</VBox>

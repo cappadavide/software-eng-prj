@@ -1,9 +1,8 @@
 package model;
 
-import javafx.scene.control.ListCell;
 import javafx.beans.property.SimpleStringProperty;
 
-public class RecensioneModel extends ListCell<String>{
+public class RecensioneModel {
     private SimpleStringProperty titolo;
     private SimpleStringProperty corpo;
     private SimpleStringProperty rating;
@@ -30,8 +29,8 @@ public class RecensioneModel extends ListCell<String>{
         return usernameutente;
     }
 
-    public void setUsernameUtente(String overview) {
-        this.usernameutente.set(overview);
+    public void setUsernameUtente(String usernameUtente) {
+        this.usernameutente.set(usernameUtente);
     }
 
     public String getStrutturaId() {
@@ -42,8 +41,8 @@ public class RecensioneModel extends ListCell<String>{
         return strutturaid;
     }
 
-    public void setStrutturaId(String title) {
-        this.strutturaid.set(title);
+    public void setStrutturaId(String strutturaid) {
+        this.strutturaid.set(strutturaid);
     }
 
     public String getTitolo() {
@@ -54,8 +53,8 @@ public class RecensioneModel extends ListCell<String>{
         return titolo;
     }
 
-    public void setTitolo(String posterPath) {
-        this.titolo.set(posterPath);
+    public void setTitolo(String titolo) {
+        this.titolo.set(titolo);
     }
 
     public String getRating() {
@@ -66,8 +65,8 @@ public class RecensioneModel extends ListCell<String>{
         return rating;
     }
 
-    public void setRating(String releaseDate) {
-        this.rating.set(releaseDate);
+    public void setRating(String rating) {
+        this.rating.set(rating);
     }
 
      public String getCorpo() {
@@ -78,8 +77,8 @@ public class RecensioneModel extends ListCell<String>{
         return corpo;
     }
 
-    public void setCorpo(String releaseDate) {
-        this.corpo.set(releaseDate);
+    public void setCorpo(String corpo) {
+        this.corpo.set(corpo);
     }
     
     public String getID() {
@@ -90,7 +89,7 @@ public class RecensioneModel extends ListCell<String>{
         return id;
     }
 
-    public void setID(String releaseDate) {
-        this.id.set(releaseDate);
+    public void setID(String id) {
+        this.id.set(id);
     }
 }

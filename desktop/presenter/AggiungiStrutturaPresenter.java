@@ -1,164 +1,177 @@
 package presenter;
 
+import DAO.DBManager;
+import DAO.FotoDAO;
+import DAO.S3API;
 import DAO.StrutturaDAO;
 import com.jfoenix.controls.JFXListView;
-import consigliaviaggi.RecensioneCell;
-import consigliaviaggi.StrutturaCell;
+import interfaces.RicercaIndirizzo;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
-import model.RecensioneModel;
+import javafx.stage.StageStyle;
+import model.FotoModel;
 import model.StrutturaModel;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
-import org.controlsfx.control.textfield.TextFields;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import java.sql.Connection;
+import javafx.application.Platform;
+import javafx.geometry.Pos;
+import javafx.util.Duration;
+import model.CoordinateModel;
+import org.controlsfx.control.Notifications;
+import org.postgresql.util.PSQLException;
+import interfaces.MenuUtils;
 
-/**
- * pk.eyJ1IjoiY2FwcGFkYXZpZGUiLCJhIjoiY2s4dnN3Z2tuMGp1ejNvczc1OWpoNGxidSJ9.Xfan0iqgJviP24q-ThnTUA
- *
- * @author davso
- */
-public class AggiungiStrutturaPresenter implements Initializable {
+public class AggiungiStrutturaPresenter implements Initializable, RicercaIndirizzo, MenuUtils {
 
     @FXML
     private MenuBar menuBar;
 
     @FXML
-    private ComboBox categoriaComboBox;
+    private ComboBox categoriaComboBox, sottocategoriaComboBox;
 
     @FXML
-    private ComboBox sottocategoriaComboBox;
-
-    @FXML
-    private TextField nomeField;
+    private TextField nomeField, indirizzoField, prezzoDa, prezzoA;
 
     @FXML
     private TextArea informazioniField;
 
     @FXML
-    private TextField ratingField;
+    private Text campiObbligatoriMessage, caricamentoMessage;
 
     @FXML
-    private TextField indirizzoField;
+    private JFXListView listaSuggerimenti, listaFoto;
 
-    @FXML
-    private TextField prezzoDa;
-
-    @FXML
-    private TextField prezzoA;
-
-    @FXML
-    private Text campiObbligatoriMessage;
-
-    @FXML
-    private JFXListView listSearch;
+    private String nomeStruttura, categoriaStruttura, sottocategoriaStruttura, informazioniStruttura, indirizzoStruttura, prezzoDaStruttura, prezzoAStruttura;
 
     private StrutturaDAO strutturaDAO;
 
-    ObservableList<String> tipoCategoria = FXCollections.observableArrayList("Alberghi", "Ristoranti", "Attrazioni");
-    ObservableList<String> tipoSottocategoriaAlberghi = FXCollections.observableArrayList("Hotel", "B&B", "Appartamento", "Altro");
-    ObservableList<String> tipoSottocategoriaRistoranti = FXCollections.observableArrayList("Pizzeria", "FastFood", "Ristorante", "Altro");
-    ObservableList<String> tipoSottocategoriaAttrazioni = FXCollections.observableArrayList("Museo", "Zoo", "Parco giochi", "Altro");
+    private ArrayList<FotoModel> listaFotoAggiunte = new ArrayList<>();
 
-    ArrayList<String> lista = new ArrayList<>();
+    private ArrayList<String> suggerimenti = new ArrayList<>();
+
+    private ArrayList<CoordinateModel> listaCoordinate = new ArrayList<>();
 
     private StrutturaModel struttura;
+    private S3API s3API;
+
+    private double latitudine, longitudine;
+
+    ObservableList<String> tipoCategoria = FXCollections.observableArrayList("", "alberghi", "ristoranti", "attrazioni");
+    ObservableList<String> tipoSottocategoriaAlberghi = FXCollections.observableArrayList("", "hotel", "bb", "appartamento", "altro");
+    ObservableList<String> tipoSottocategoriaRistoranti = FXCollections.observableArrayList("", "pizzeria", "fastfood", "ristorante", "altro");
+    ObservableList<String> tipoSottocategoriaAttrazioni = FXCollections.observableArrayList("", "museo", "zoo", "parco giochi", "altro");
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.strutturaDAO = new StrutturaDAO();
+        s3API = new S3API();
         sottocategoriaComboBox.setDisable(true);
+        categoriaComboBox.setValue("");
+        sottocategoriaComboBox.setValue("");
+        nomeField.setText("");
+        indirizzoField.setText("");
+        prezzoDa.setText("");
+        prezzoA.setText("");
+        informazioniField.setText("");
         categoriaComboBox.setItems(tipoCategoria);
-        listSearch.setVisible(false);
+        listaSuggerimenti.setVisible(false);
+        caricamentoMessage.setVisible(false);
         setIndirizzoField();
     }
 
-    public void setIndirizzoField() {
+    private void setIndirizzoField() {
         indirizzoField.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            System.out.println("Text Changed to  " + newValue + "\n");
-            if (newValue != null && newValue.length() > 2) {
+            if (newValue != null && newValue.length() > 2 && indirizzoField.isFocused()) {
                 try {
-                    listSearch.getItems().clear();
-                    lista.clear();
-                    this.strutturaDAO = new StrutturaDAO();
-
-                    //search void per chiamate asincrone
-                    strutturaDAO.search(newValue);
-                    //in DAO mettere un riferimento a questo presenter per restituire il JSONObject quando Ã¨ pronto
-
+                    suggerimenti.clear();
+                    listaCoordinate.clear();
+                    strutturaDAO.search(newValue, this);
                 } catch (IOException ex) {
-                    Logger.getLogger(AggiungiStrutturaPresenter.class.getName()).log(Level.SEVERE, null, ex);
-                    System.out.println("Impossibile ricercare termine di ricerca");
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(AggiungiStrutturaPresenter.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ExecutionException ex) {
-                    Logger.getLogger(AggiungiStrutturaPresenter.class.getName()).log(Level.SEVERE, null, ex);
+                    mostraEccezioneDialog("Errore", ex.getMessage());
+                } catch (InterruptedException | ExecutionException ex) {
+                    mostraEccezioneDialog("Errore", ex.getMessage());
                 }
             }
         });
     }
 
+    @Override
     public void rispostaRicevuta(String result) {
-        JSONObject response = new JSONObject (result);
-        //fare nuovo metodo per visualizzare la lista
-        JSONArray list = response.getJSONArray("features");
-        System.out.println(response.toString() + "\n");
-        for (int i = 0; i < list.length(); i++) {
-            System.out.println(list.getJSONObject(i).get("place_name"));
-            lista.add(list.getJSONObject(i).get("place_name").toString());
-        }
-        ObservableList<String> obl = FXCollections.observableArrayList(lista);
-        listSearch.setItems(obl);
-        //   listSearch.setCellFactory(strutturaCell -> new StrutturaCell());
-        listSearch.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                indirizzoField.setText(newValue);
-                //     listSearch.setVisible(false);
+        final int height = 24;
+        Platform.runLater(() -> {
+            JSONObject response = new JSONObject(result);
+            JSONArray features = response.getJSONArray("features");
+            for (int i = 0; i < features.length(); i++) {
+                JSONObject feature = features.getJSONObject(i);
+                suggerimenti.add(feature.get("place_name").toString());
+                listaCoordinate.add(prelevaCoordinate(feature));
             }
+            ObservableList<String> obl = FXCollections.observableArrayList(suggerimenti);
+            listaSuggerimenti.setItems(obl);
+            listaSuggerimenti.setPrefHeight(suggerimenti.size() * height + 2);
+            listaSuggerimenti.setVisible(true);
         });
-        listSearch.setVisible(true);
     }
 
-    public void sceltaIndirizzo(StrutturaModel stringa) {
-        this.struttura = stringa;
-        indirizzoField.setText(struttura.getIndirizzo());
+    private CoordinateModel prelevaCoordinate(JSONObject feature) {
+        JSONObject geometry = feature.getJSONObject("geometry");
+        JSONArray coords = geometry.getJSONArray("coordinates");
+        return new CoordinateModel(coords.getDouble(1), coords.getDouble(0));
+    }
+
+    @FXML
+    private void scegliIndirizzo(MouseEvent event) {
+        int indice = listaSuggerimenti.getSelectionModel().getSelectedIndex();
+        indirizzoField.setText(listaSuggerimenti.getSelectionModel().getSelectedItem().toString());
+        latitudine = listaCoordinate.get(indice).getLatitudine();
+        longitudine = listaCoordinate.get(indice).getLongitudine();
+        listaSuggerimenti.setVisible(false);
     }
 
     public void scegliCategoria(ActionEvent e) {
         String scelta = categoriaComboBox.getSelectionModel().getSelectedItem().toString();
-        System.out.println(scelta);
-        if (scelta.equals("Alberghi") || scelta.equals("Ristoranti") || scelta.equals("Attrazioni")) {
+        if (scelta.equals("alberghi") || scelta.equals("ristoranti") || scelta.equals("attrazioni")) {
             sottocategoriaComboBox.setDisable(false);
-            if (scelta.equals("Alberghi")) {
+            if (scelta.equals("alberghi")) {
                 sottocategoriaComboBox.setItems(tipoSottocategoriaAlberghi);
-            } else if (scelta.equals("Ristoranti")) {
+
+            } else if (scelta.equals("ristoranti")) {
                 sottocategoriaComboBox.setItems(tipoSottocategoriaRistoranti);
-            } else {
+            } else if (scelta.equals("attrazioni")) {
                 sottocategoriaComboBox.setItems(tipoSottocategoriaAttrazioni);
             }
         }
@@ -166,69 +179,216 @@ public class AggiungiStrutturaPresenter implements Initializable {
 
     @FXML
     private void clickInserisci(ActionEvent event) {
-        System.out.println("Hai cliccato Inserisci");
-        try {
-            if ((categoriaComboBox.getSelectionModel().getSelectedItem().toString() == null
-                    || sottocategoriaComboBox.getSelectionModel().getSelectedItem().toString() == null
-                    || nomeField.getText() == null
-                    || informazioniField.getText() == null
-                    || indirizzoField.getText() == null
-                    || ratingField.getText() == null
-                    || prezzoDa.getText() == null
-                    || prezzoA.getText() == null)
-                    || nomeField.getText().trim().isEmpty()
-                    || informazioniField.getText().trim().isEmpty()
-                    || ratingField.getText().trim().isEmpty()
-                    || prezzoDa.getText().trim().isEmpty()
-                    || prezzoA.getText().trim().isEmpty()) {
-                campiObbligatoriMessage.setText("Tutti i campi sono obbligatori");
-                campiObbligatoriMessage.setFill(Color.FIREBRICK);
-            } else {
-                campiObbligatoriMessage.setText(" ");
-                System.out.println("Inserito");
+        Alert inserisciStrutturaDialog = creaDialog("Aggiungi struttura", "Sei sicuro di voler aggiungere tale struttura?");
+        ButtonType buttonSi = new ButtonType("Si");
+        ButtonType buttonNo = new ButtonType("No");
+        inserisciStrutturaDialog.getButtonTypes().setAll(buttonSi, buttonNo);
+        Optional<ButtonType> result = inserisciStrutturaDialog.showAndWait();
+        if (result.get() == buttonSi) {
+            try {
+                inserisciStruttura();
+            } catch (InterruptedException ex) {
+                mostraEccezioneDialog("Errore", ex.getMessage());
             }
-        } catch (NullPointerException e) {
+        }
+    }
+
+    public void inserisciStruttura() throws InterruptedException {
+        String nomeFile, copertinaURL;
+        nomeStruttura = nomeField.getText();
+        categoriaStruttura = categoriaComboBox.getSelectionModel().getSelectedItem().toString();
+        if (sottocategoriaComboBox.isDisable()) {
+            sottocategoriaStruttura = "";
+        }
+        sottocategoriaStruttura = sottocategoriaComboBox.getSelectionModel().getSelectedItem().toString();
+        indirizzoStruttura = indirizzoField.getText();
+        informazioniStruttura = informazioniField.getText();
+        prezzoDaStruttura = prezzoDa.getText();
+        prezzoAStruttura = prezzoA.getText();
+        if (controlloParametri()) {
+            propertyMessage(0); 
+        } else {
+            copertinaURL = listaFotoAggiunte.get(0).getNomeFile();
+            try {
+                Connection conn = DBManager.getConnection(true);
+                propertyMessage(1);
+                conn.createStatement().execute("SELECT setval('struttura_id_seq', MAX(struttura.id)) FROM STRUTTURA;");
+                conn.setAutoCommit(false);
+                conn.createStatement().execute("SET CONSTRAINTS foto_strutturaid_fkey DEFERRED");
+                strutturaDAO.inserisciStruttura(conn, nomeStruttura, categoriaStruttura, sottocategoriaStruttura, informazioniStruttura, indirizzoStruttura, latitudine, longitudine, prezzoDaStruttura, prezzoAStruttura, copertinaURL);
+                ResultSet idStruttura = strutturaDAO.trovaIdStrutturaMassimo(conn);
+                while (idStruttura.next()) {
+                    int id = idStruttura.getInt("id");
+                    aggiungiFoto(conn, listaFotoAggiunte, ++id);
+                }
+                conn.commit();
+                conn.close();
+                s3API.inserisciFoto(listaFotoAggiunte);
+                ritornaAlMenu();
+                } catch (NumberFormatException exception) {
+                propertyMessage(2);
+                mostraEccezioneDialog("Errore riempimento campi", "I campi 'Prezzo da' e 'Prezzo a' devono essere numeri.");
+            } catch (SQLException ex) {
+                propertyMessage(2);
+                mostraEccezioneDialog("Errore", ex.getMessage());
+            }
+        }
+    }
+
+    public boolean controlloParametri() {
+        return (nomeStruttura.equals("")
+                || categoriaStruttura.equals("")
+                || sottocategoriaStruttura.equals("")
+                || informazioniStruttura.equals("")
+                || indirizzoStruttura.equals("")
+                || prezzoDaStruttura.equals("")
+                || prezzoAStruttura.equals("")
+                || listaFotoAggiunte.isEmpty());
+    }
+
+    public void propertyMessage(int flag){
+        campiObbligatoriMessage.setVisible(true);
+        if (flag == 0) {
             campiObbligatoriMessage.setText("Tutti i campi sono obbligatori");
+            campiObbligatoriMessage.setFill(Color.FIREBRICK);
+        } else if (flag == 1) {
+            caricamentoMessage.setVisible(true);
+        }
+        else {
+            campiObbligatoriMessage.setText("Errore. Si è verificato un problema.");
             campiObbligatoriMessage.setFill(Color.FIREBRICK);
         }
     }
 
-    @FXML
-    private void clickBack(ActionEvent event) throws IOException {
-        System.out.println("Hai cliccato Indietro");
-        Parent gestisciStrutture = FXMLLoader.load(getClass().getResource("/view/menu.fxml"));
-        Scene gestisciStruttureView = new Scene(gestisciStrutture);
+    private boolean aggiungiFoto(Connection conn, ArrayList<FotoModel> listaFoto, int idStruttura) throws SQLException {
+        Iterator<FotoModel> iteratore = listaFoto.iterator();
+        FotoDAO fotoDAO = new FotoDAO();
+        while (iteratore.hasNext()) {
+            String nomeFile = iteratore.next().getNomeFile();
+            fotoDAO.inserisciFoto(conn, nomeFile, idStruttura);
+        }
+        return true;
+    }
 
-        Stage window = (Stage) menuBar.getScene().getWindow();
-        window.setScene(gestisciStruttureView);
-        window.show();
+    private Alert creaDialog(String titolo, String corpo) {
+        Alert dialog = new Alert(Alert.AlertType.NONE);
+        dialog.setHeaderText(titolo);
+        if (corpo.contains("struttura_longitudine_key") || corpo.contains("struttura_latitidune_key")) {
+            dialog.setContentText("A questo indirizzo è stata già assegnata una struttura.");
+        } else if (corpo.contains("foto_pkey")) {
+            dialog.setContentText("Una o più foto sono state già utilizzate per un'altra struttura. Riprovare.");
+        } else {
+            dialog.setContentText(corpo);
+        }
+        javafx.geometry.Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        dialog.setX((bounds.getMaxX() / 2) - 150);
+        dialog.setY((bounds.getMaxY() / 2) - 100);
+
+        DialogPane dialogPane = dialog.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("/consigliaviaggi/css/alertStruttura.css").toExternalForm());
+        dialog.initStyle(StageStyle.UNDECORATED);
+
+        return dialog;
+    }
+
+    private void mostraEccezioneDialog(String titolo, String corpo) {
+        Alert dialogEccezione = creaDialog(titolo, corpo);
+
+        ButtonType buttonOk = new ButtonType("Ok");
+        dialogEccezione.getButtonTypes().setAll(buttonOk);
+        Optional<ButtonType> result = dialogEccezione.showAndWait();
+    }
+
+    private void ritornaAlMenu(){
+        try {
+            Parent gestisciStrutture = FXMLLoader.load(getClass().getResource("/view/gestisciStrutture.fxml"));
+            Scene gestisciStruttureView = new Scene(gestisciStrutture);
+            gestisciStruttureView.getStylesheets().add(getClass().getResource("/consigliaviaggi/css/style.css").toExternalForm());
+            
+            Stage window = (Stage) menuBar.getScene().getWindow();
+            window.setScene(gestisciStruttureView);
+            window.show();
+            Notifications notifica = Notifications.create()
+                    .hideAfter(Duration.seconds(3))
+                    .position(Pos.BOTTOM_LEFT);
+            notifica.title("");
+            notifica.text("La struttura stata aggiunta.");
+            notifica.show();
+        } catch (IOException ex) {
+            mostraEccezioneDialog("Errore", ex.getMessage());
+        }
     }
 
     @FXML
-    private void logout(ActionEvent event) throws IOException {
-        System.out.println("Hai cliccato Esci");
-        Parent menuPrincipale = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
-        Scene menuPrincipaleView = new Scene(menuPrincipale);
+    private void tornaAllaGestioneDelleStrutture(ActionEvent event){
+        try {
+            Parent gestisciStrutture = FXMLLoader.load(getClass().getResource("/view/gestisciStrutture.fxml"));
+            Scene gestisciStruttureView = new Scene(gestisciStrutture);
+            
+            Stage window = (Stage) menuBar.getScene().getWindow();
+            window.setScene(gestisciStruttureView);
+            window.show();
+        } catch (IOException ex) {
+            mostraEccezioneDialog("Errore", ex.getMessage());
+        }
+    }
 
-        Stage window = (Stage) menuBar.getScene().getWindow();
-        window.setScene(menuPrincipaleView);
-        window.show();
+    @Override
+    @FXML
+    public void logout(ActionEvent event) {
+        try {
+            Parent login = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
+            Scene loginView = new Scene(login);
+            
+            Stage window = (Stage) menuBar.getScene().getWindow();
+            window.setScene(loginView);
+            window.show();
+        } catch (IOException ex) {
+            mostraEccezioneDialog("Errore", ex.getMessage());
+        }
+    }
+
+    @Override
+    @FXML
+    public void visualizzaInformazioni(final ActionEvent event) {
+        try {
+            Parent informazioni = FXMLLoader.load(getClass().getResource("/view/informazioni.fxml"));
+            Scene informazioniView = new Scene(informazioni);
+            
+            Stage window = new Stage();
+            window.setScene(informazioniView);
+            window.setTitle("Informazioni");
+            window.show();
+        } catch (IOException ex) {
+            mostraEccezioneDialog("Errore", ex.getMessage());
+        }
     }
 
     @FXML
-    private void visualizzaInformazioni(final ActionEvent event) throws IOException {
-        System.out.println("Hai cliccato Informazioni");
-        Parent informazioni = FXMLLoader.load(getClass().getResource("/view/informazioni.fxml"));
-        Scene informazioniView = new Scene(informazioni);
+    private void aggiungiFotoAllaStruttura(final ActionEvent event){
+        FileChooser.ExtensionFilter imageFilter
+                = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
+        FileChooser aggiungiFoto = new FileChooser();
+        aggiungiFoto.getExtensionFilters().add(imageFilter);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        aggiungiFoto.setTitle("Esplora risorse");
+        File pathFile = aggiungiFoto.showOpenDialog(stage);
+        if (pathFile != null) {
+            listaFotoAggiunte.add(new FotoModel(pathFile.getName(), "file:"+pathFile.toString()));
+            ObservableList<FotoModel> obl = FXCollections.observableArrayList(listaFotoAggiunte);
+            listaFoto.setItems(obl);
+            listaFoto.setCellFactory(foto -> new FotoCell());
+            listaFoto.setVisible(true);
+        }
 
-        Stage window = new Stage();
-        window.setScene(informazioniView);
-        window.setTitle("Informazioni");
-        window.show();
     }
+
+    @FXML
+    private void deletePhoto(MouseEvent e) {
+        FotoModel indice = (FotoModel) listaFoto.getSelectionModel().getSelectedItem();
+        listaFotoAggiunte.remove(indice);
+        ObservableList<FotoModel> obl = FXCollections.observableArrayList(listaFotoAggiunte);
+        listaFoto.setItems(obl);
+    }
+
 }
-
-//   TextFields.bindAutoCompletion(indirizzoField, lista);
-//   ObservableList<String> obl = FXCollections.observableArrayList(lista);
-//   listSearch.setItems(obl);
-//   listSearch.setVisible(true);

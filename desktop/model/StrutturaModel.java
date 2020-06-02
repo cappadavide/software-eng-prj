@@ -1,22 +1,34 @@
 package model;
 
-import javafx.scene.control.ListCell;
 import javafx.beans.property.SimpleStringProperty;
 
-public class StrutturaModel extends ListCell<String> {
+public class StrutturaModel{
     private SimpleStringProperty nome;
     private SimpleStringProperty informazioni;
     private SimpleStringProperty sottocategoria;
     private SimpleStringProperty categoria;
     private SimpleStringProperty indirizzo;
     private SimpleStringProperty rating;
+    private SimpleStringProperty idStruttura;
+    private SimpleStringProperty prezzoDa;
+    private SimpleStringProperty prezzoA;
+    private SimpleStringProperty copertinaURL;
 
-    public StrutturaModel(String nome, String sottocategoria, String indirizzo, String rating, String informazioni) {
+    public StrutturaModel(){
+        
+    }
+    
+    public StrutturaModel(String nome, String categoria, String sottocategoria, String indirizzo, String rating, String informazioni, String identificativo, String prezzoDa, String prezzoA, String copertinaURL) {
         this.nome = new SimpleStringProperty(nome);
+        this.categoria = new SimpleStringProperty(categoria);
         this.sottocategoria = new SimpleStringProperty(sottocategoria);
         this.indirizzo = new SimpleStringProperty(indirizzo);
         this.rating = new SimpleStringProperty(rating);
         this.informazioni = new SimpleStringProperty(informazioni);
+        this.idStruttura = new SimpleStringProperty(identificativo);
+        this.prezzoDa = new SimpleStringProperty(prezzoDa);
+        this.prezzoA = new SimpleStringProperty(prezzoA);
+        this.copertinaURL = new SimpleStringProperty(copertinaURL);
     }
 
     public String getNome() {
@@ -27,22 +39,22 @@ public class StrutturaModel extends ListCell<String> {
         return nome;
     }
 
-    public void setNome(String overview) {
-        this.nome.set(overview);
+    public void setNome(String nome) {
+        this.nome.set(nome);
     }
-    
+
     public String getCategoria() {
-        return sottocategoria.get();
+        return categoria.get();
     }
 
     public SimpleStringProperty categoriaProperty() {
-        return sottocategoria;
+        return categoria;
     }
 
-    public void setCategoria(String overview) {
-        this.sottocategoria.set(overview);
+    public void setCategoria(String cetegoria) {
+        this.categoria.set(cetegoria);
     }
-    
+
     public String getSottocategoria() {
         return sottocategoria.get();
     }
@@ -51,10 +63,10 @@ public class StrutturaModel extends ListCell<String> {
         return sottocategoria;
     }
 
-    public void setSottocategoria(String overview) {
-        this.sottocategoria.set(overview);
+    public void setSottocategoria(String sottocategoria) {
+        this.sottocategoria.set(sottocategoria);
     }
-    
+
     public String getIndirizzo() {
         return indirizzo.get();
     }
@@ -63,10 +75,10 @@ public class StrutturaModel extends ListCell<String> {
         return indirizzo;
     }
 
-    public void setIndirizzo(String overview) {
-        this.indirizzo.set(overview);
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo.set(indirizzo);
     }
-    
+
     public String getRating() {
         return rating.get();
     }
@@ -75,10 +87,10 @@ public class StrutturaModel extends ListCell<String> {
         return rating;
     }
 
-    public void setRating(String overview) {
-        this.rating.set(overview);
+    public void setRating(String rating) {
+        this.rating.set(rating);
     }
-    
+
     public String getInformazioni() {
         return informazioni.get();
     }
@@ -87,7 +99,56 @@ public class StrutturaModel extends ListCell<String> {
         return informazioni;
     }
 
-    public void setInformazioni(String overview) {
-        this.informazioni.set(overview);
+    public void setInformazioni(String informazioni) {
+        this.informazioni.set(informazioni);
     }
+
+    public String getID() {
+        return idStruttura.get();
+    }
+
+    public SimpleStringProperty IDProperty() {
+        return idStruttura;
+    }
+
+    public void setID(String idstruttura) {
+        this.idStruttura.set(idstruttura);
+    }
+
+    public String getPrezzoDa() {
+        return prezzoDa.get();
+    }
+
+    public SimpleStringProperty prezzoDaProperty() {
+        return prezzoDa;
+    }
+
+    public void setPrezzoDa(String prezzoDa) {
+        this.prezzoDa.set(prezzoDa);
+    }
+
+    public String getPrezzoA() {
+        return prezzoA.get();
+    }
+
+    public SimpleStringProperty prezzoAProperty() {
+        return prezzoA;
+    }
+
+    public void setPrezzoA(String prezzoA) {
+        this.prezzoA.set(prezzoA);
+    }
+
+    public String getCopertinaURL() {
+        return copertinaURL.get();
+    }
+
+    public SimpleStringProperty copertinaURLProperty() {
+        return copertinaURL;
+    }
+
+    public void setCopertinaURL(String copertinaURL) {
+        this.copertinaURL.set(copertinaURL);
+    }
+
 }

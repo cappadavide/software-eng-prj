@@ -1,43 +1,52 @@
 package DAO;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RecensioneDAO {
-    private static final String url = "consigliaviaggidb.cb6rvhwngqbh.eu-west-3.rds.amazonaws.com";
-    private static final String port = "5432";
-    private static final String nameDatabase = "postgres";
-    PreparedStatement preparedStatement;
-    Connection connection;
+    private PreparedStatement preparedStatement;
     
-    public void approvaRecensione(String idRecensione) throws SQLException{
-        connection = DriverManager.getConnection("jdbc:postgresql://"+url+":"+port+"/"+nameDatabase,"root","ingsw192016");
+    public void approvaRecensione(Connection conn, String idRecensione) throws SQLException{
         String sql = "UPDATE RECENSIONE SET VALUTAZIONE=1 WHERE ID=?";
-        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement = conn.prepareStatement(sql);
         preparedStatement.setInt(1, Integer.parseInt(idRecensione));
         preparedStatement.executeUpdate();
-        connection.close();
         preparedStatement.close();
     }
     
-    public void declinaRecensione(String idRecensione) throws SQLException{
-        connection = DriverManager.getConnection("jdbc:postgresql://"+url+":"+port+"/"+nameDatabase,"root","ingsw192016");
-        String sql = "UPDATE RECENSIONE SET VALUTAZIONE=0 WHERE ID=?";
-        preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, Integer.parseInt(idRecensione));
-        preparedStatement.executeUpdate();
-        connection.close();
-        preparedStatement.close();
-    }
-    
-    public ResultSet visualizzaListaRecensioni() throws SQLException{
-        connection = DriverManager.getConnection("jdbc:postgresql://"+url+":"+port+"/"+nameDatabase,"root","ingsw192016");
-        String sql = "SELECT * FROM RECENSIONE WHERE VALUTAZIONE=?";
-        preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, -1);
+    public ResultSet ricavaIdDellaStruttura(Connection conn, String nomeStruttura) throws SQLException{
+        String sql = "SELECT ID FROM STRUTTURA WHERE NOME=?";
+        preparedStatement = conn.prepareStatement(sql);
+        preparedStatement.setString(1, nomeStruttura);
         return preparedStatement.executeQuery();
+    }
+    
+    public void aggiornaRatingStruttura(Connection conn, String strutturaID) throws SQLException{
+        String sql = "UPDATE STRUTTURA SET RATING=(SELECT AVG(R.RATING) FROM RECENSIONE AS R WHERE R.VALUTAZIONE=1 AND R.STRUTTURAID=?) WHERE STRUTTURA.ID=?";
+        preparedStatement = conn.prepareStatement(sql);
+        preparedStatement.setInt(1, Integer.parseInt(strutturaID));
+        preparedStatement.setInt(2, Integer.parseInt(strutturaID));
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+    
+    public void declinaRecensione(Connection conn, String idRecensione) throws SQLException{
+        String sql = "UPDATE RECENSIONE SET VALUTAZIONE=0 WHERE ID=?";
+        preparedStatement = conn.prepareStatement(sql);
+        preparedStatement.setInt(1, Integer.parseInt(idRecensione));
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+    
+    public ResultSet visualizzaListaRecensioni(Connection conn) throws SQLException {
+            String sql = "SELECT R.USERNAMEUTENTE, S.NOME, R.TITOLO, R.RATING, R.CORPO, R.ID FROM RECENSIONE AS R JOIN STRUTTURA AS S on R.VALUTAZIONE=? AND S.ID=R.strutturaid;";
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, -1);
+            return preparedStatement.executeQuery();
+           
     }
 }

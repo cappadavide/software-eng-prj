@@ -36,36 +36,6 @@
     -fx-background-color: transparent;
 }
 
-.starsOneCheckBox {
-    -fx-graphic: url('../immagini/starsOne.png');
-     -fx-border-color: transparent;
-     -fx-background-color: transparent;
-}
-
-.starsTwoCheckBox {
-    -fx-graphic: url('../immagini/starsTwo.png');
-     -fx-border-color: transparent;
-     -fx-background-color: transparent;
-}
-
-.starsThreeCheckBox {
-    -fx-graphic: url('../immagini/starsThree.png');
-     -fx-border-color: transparent;
-     -fx-background-color: transparent;
-}
-
-.starsFourCheckBox {
-    -fx-graphic: url('../immagini/starsFour.png');
-     -fx-border-color: transparent;
-     -fx-background-color: transparent;
-}
-
-.starsFiveCheckBox {
-    -fx-graphic: url('../immagini/starsFive.png');
-    -fx-border-color: transparent;
-    -fx-background-color: transparent;
-}
-
 .cercaButton {
     -fx-background-color: #8F8A8A;
     -fx-background-radius: 26;
@@ -80,4 +50,29 @@
 .inserisciButton {
     -fx-background-color: #F8A419;
     -fx-background-radius: 10;
+}
+
+.home {
+    -fx-graphic: url('../immagini/home.png');
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.modify {
+    -fx-graphic: url('../immagini/modify.png');
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.trash {
+    -fx-graphic: url('../immagini/trash.png');
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.cross {
+    -fx-graphic: url('../immagini/Cross.png');
+    -fx-border-color: transparent;
+    -fx-background-color: #E4E4E4;
+    -fx-background-opacity: 50;
 }

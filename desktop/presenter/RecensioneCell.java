@@ -1,8 +1,9 @@
-package consigliaviaggi;
+package presenter;
 
 import model.RecensioneModel;
 import presenter.VisualizzaRecensionePresenter;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -12,13 +13,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.MenuBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.controlsfx.control.Rating;
 
 public class RecensioneCell extends ListCell<RecensioneModel> {
@@ -36,13 +43,10 @@ public class RecensioneCell extends ListCell<RecensioneModel> {
     private Rating ratingField;
 
     @FXML
-    private Label labelCorpo;
+    private Text labelCorpo;
 
     @FXML
     private GridPane gridPane;
-
-    @FXML
-    private ImageView poster;
 
     @FXML
     private Button arrowButton;
@@ -54,9 +58,9 @@ public class RecensioneCell extends ListCell<RecensioneModel> {
     private MenuBar menubar;
 
     @Override
-    protected void updateItem(RecensioneModel fs, boolean empty) {
-        super.updateItem(fs, empty);
-        if (empty || fs == null) {
+    protected void updateItem(RecensioneModel recensione, boolean empty) {
+        super.updateItem(recensione, empty);
+        if (empty || recensione == null) {
             setText(null);
             setGraphic(null);
         } else {
@@ -66,16 +70,16 @@ public class RecensioneCell extends ListCell<RecensioneModel> {
                 try {
                     mLLoader.load();
                 } catch (IOException e) {
-                    System.out.println("RECENSIONE CELL");
+                    mostraEccezioneDialog("Errore", e.getMessage());
                 }
             }
-            labelUsernameUtente.setText(fs.getUsernameUtente());
-            labelStrutturaId.setText(fs.getStrutturaId());
-            labelTitolo.setText(fs.getTitolo());
-            ratingField.setRating(Integer.parseInt(fs.getRating()));
-            labelCorpo.setText(fs.getCorpo());
+            labelUsernameUtente.setText(recensione.getUsernameUtente());
+            labelStrutturaId.setText(recensione.getStrutturaId());
+            labelTitolo.setText(recensione.getTitolo());
+            ratingField.setRating(Integer.parseInt(recensione.getRating()));
+            labelCorpo.setText(recensione.getCorpo());
             arrowButton.setVisible(true);
-            arrowButton.setId(fs.getID());
+            arrowButton.setId(recensione.getID());
             arrowButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
@@ -85,14 +89,13 @@ public class RecensioneCell extends ListCell<RecensioneModel> {
                         Parent a = loader.load();
                         Scene ab = new Scene(a);
                         VisualizzaRecensionePresenter controller = loader.getController();
-                        controller.initData(fs);
+                        controller.initData(recensione);
 
                         Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
                         window.setScene(ab);
                         window.show();
                     } catch (IOException ex) {
-                        Logger.getLogger(RecensioneCell.class.getName()).log(Level.SEVERE, null, ex);
-                        System.out.println("Errore");
+                        mostraEccezioneDialog("Errore", ex.getMessage());
                     }
                 }
             });
@@ -100,4 +103,28 @@ public class RecensioneCell extends ListCell<RecensioneModel> {
             setGraphic(gridPane);
         }
     }
+
+    private Alert creaDialog(String titolo, String corpo) {
+        Alert dialog = new Alert(Alert.AlertType.NONE);
+        dialog.setHeaderText(titolo);
+        dialog.setContentText(corpo);
+        javafx.geometry.Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        dialog.setX((bounds.getMaxX() / 2) - 150);
+        dialog.setY((bounds.getMaxY() / 2) - 100);
+
+        DialogPane dialogPane = dialog.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("/consigliaviaggi/css/alertStruttura.css").toExternalForm());
+        dialog.initStyle(StageStyle.UNDECORATED);
+
+        return dialog;
+    }
+
+    private void mostraEccezioneDialog(String titolo, String corpo) {
+        Alert dialogEccezione = creaDialog(titolo, corpo);
+
+        ButtonType buttonOk = new ButtonType("Ok");
+        dialogEccezione.getButtonTypes().setAll(buttonOk);
+        Optional<ButtonType> result = dialogEccezione.showAndWait();
+    }
+
 }

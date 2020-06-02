@@ -2,45 +2,73 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.Rating?>
 
-<GridPane fx:id="gridpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="gridpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="939.0" styleClass="jfx-list-cell" stylesheets="@../consigliaviaggi/css/strutture.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="17.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="104.0" minHeight="10.0" prefHeight="104.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="104.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label fx:id="nomeField" text="Label">
          <font>
-            <Font size="36.0" />
+            <Font name="Segoe UI Bold" size="36.0" />
          </font>
       </Label>
-      <Rating fx:id="ratingButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="103.0" rating="0.0" stylesheets="@../consigliaviaggi/css/rating.css" GridPane.rowIndex="1" />
-      <Label fx:id="sottocategoriaField" text="Label" GridPane.rowIndex="1">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <GridPane.margin>
-            <Insets left="120.0" />
-         </GridPane.margin>
-      </Label>
+      <HBox GridPane.rowIndex="1">
+         <children>
+            <Label fx:id="rangePrezzo" text="Label">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="18.0" stroke="#ababab00" strokeType="INSIDE" width="22.0" />
+            <Rating fx:id="ratingButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" partialRating="true" prefHeight="18.0" prefWidth="103.0" rating="0.0" stylesheets="@../consigliaviaggi/css/rating.css">
+               <HBox.margin>
+                  <Insets top="7.0" />
+               </HBox.margin>
+            </Rating>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="18.0" stroke="TRANSPARENT" strokeType="INSIDE" width="21.0" />
+            <Label fx:id="sottocategoriaField" text="Label">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
       <Label fx:id="indirizzoField" text="Label" GridPane.rowIndex="2" />
-      <Label fx:id="informazioniField" text="Label" GridPane.rowIndex="3" GridPane.valignment="TOP">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
+      <ImageView fx:id="anteprima" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+      <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="77.0" prefWidth="704.0" style="-fx-background-color: transparent;" styleClass="informazioni" stylesheets="@../consigliaviaggi/css/strutture.css" GridPane.rowIndex="3" GridPane.valignment="TOP">
+         <content>
+            <Text fx:id="informazioniField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="672.13671875">
+               <font>
+                  <Font name="Segoe UI" size="13.0" />
+               </font>
+            </Text>
+         </content>
+      </ScrollPane>
    </children>
 </GridPane>
