@@ -46,18 +46,18 @@ public class LoginPresenter implements Initializable {
     private void login(ActionEvent event) throws IOException, SQLException {
         String username = usernameField.getText();
         String password = passwordField.getText();
-       // try {
-       //     loginDAO.connect(username,password);
+        try {
+            loginDAO.connect(username,password);
             Parent menuPrincipale = FXMLLoader.load(getClass().getResource("/view/menu.fxml"));
             Scene menuPrincipaleView = new Scene(menuPrincipale);
         
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(menuPrincipaleView);
             window.show();
-       // }
-      //  catch (SQLException e){
-       //     mostraEccezione(e.getMessage());
-       // }
+        }
+        catch (SQLException e){
+            mostraEccezione(e.getMessage());
+        }
     }
     
     public void mostraEccezione(String messaggio){
