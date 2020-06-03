@@ -163,10 +163,6 @@ public class MapPresenter implements ToPresenterMap, PermissionsListener {
 
     }
 
-    /*@Override
-    public void createPlaces(JSONObject response) {
-        view.showPlaces(response.toString());
-    }*/
     public void createPlaces(JSONObject response, LatLng coords) {
         view.showPlaces(response.toString(), coords);
     }
