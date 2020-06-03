@@ -28,31 +28,25 @@ public class RicercaRistoranti extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         BottomNavigationView b=findViewById(R.id.search);
-
         b.setOnNavigationItemSelectedListener(navListener);
         selectedFragment=new RicercaStandardRistoranti();
         getSupportFragmentManager().beginTransaction().replace(R.id.framericerca, selectedFragment).commit();
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener= new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener= menuItem -> {
 
-            selectedFragment = null;
+        switch (menuItem.getItemId()) {
 
-            switch (menuItem.getItemId()) {
+            case R.id.cerca:
+                selectedFragment = new RicercaStandardRistoranti();
+                break;
 
-                case R.id.cerca:
-                    selectedFragment = new RicercaStandardRistoranti();
-                    break;
-
-                case R.id.mappa:
-                    selectedFragment = new RicercaMappa("ristoranti");
-                    break;
-            }
-            getSupportFragmentManager().beginTransaction().replace(R.id.framericerca, selectedFragment).commit();
-            return true;
+            case R.id.mappa:
+                selectedFragment = new RicercaMappa("ristoranti");
+                break;
         }
+        getSupportFragmentManager().beginTransaction().replace(R.id.framericerca, selectedFragment).commit();
+        return true;
     };
 
     @Override

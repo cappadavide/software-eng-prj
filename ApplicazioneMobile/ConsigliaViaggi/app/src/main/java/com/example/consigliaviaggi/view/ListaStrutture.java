@@ -64,6 +64,7 @@ public class ListaStrutture extends AppCompatActivity implements PresenterToView
 
             if(extras.containsKey("range")){
                 result=presenter.createStructureList(nome,rating,indirizzo,informazioni,strutturaId,copertinaUrl,prezzoda, prezzoa, longitudine, latitudine, strutturaArrayList,range,coords);
+                if(!result) showResults();
             }
             else{
                 result=presenter.createStructureList(nome,rating,indirizzo,informazioni,strutturaId,copertinaUrl,prezzoda, prezzoa, longitudine, latitudine, strutturaArrayList);

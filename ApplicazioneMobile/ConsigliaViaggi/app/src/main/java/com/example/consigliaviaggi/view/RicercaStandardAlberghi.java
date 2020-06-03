@@ -42,6 +42,7 @@ public class RicercaStandardAlberghi extends Fragment implements PresenterToView
     private float rating=0;
     private EditText nome, localita, prezzoda, prezzoa;
     private ListView listView;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.activity_ricerca_standard_alberghi, container, false);
@@ -201,41 +202,41 @@ public class RicercaStandardAlberghi extends Fragment implements PresenterToView
 
         nome.addTextChangedListener(new TextWatcher() {
 
-                                        @Override
-                                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                                        }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
-                                        @Override
-                                        public void onTextChanged(CharSequence s, int start, int before, int count) {
-                                            String termineInput = nome.getText().toString();
-                                            cercaButton.setEnabled(termineInput.length()>0);
-                                        }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String termineInput = nome.getText().toString();
+                cercaButton.setEnabled(termineInput.length()>0);
+            }
 
-                                        @Override
-                                        public void afterTextChanged(Editable s) {
-                                        }
-                                    }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        }
         );
 
         localita.addTextChangedListener(new TextWatcher() {
 
-                                            @Override
-                                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                                            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
-                                            @Override
-                                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                                                String localitaInput = localita.getText().toString();
-                                                cercaButton.setEnabled(localitaInput.length()>0);
-                                            }
+                String localitaInput = localita.getText().toString();
+                cercaButton.setEnabled(localitaInput.length()>0);
+            }
 
-                                            @Override
-                                            public void afterTextChanged(Editable s) {
-                                                if(localita.hasFocus())
-                                                    presenter.getLocationSuggestions(s.toString());
-                                            }
-                                        }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(localita.hasFocus())
+                    presenter.getLocationSuggestions(s.toString());
+            }
+        }
         );
         prezzoda.addTextChangedListener(new TextWatcher() {
             @Override
@@ -294,6 +295,7 @@ public class RicercaStandardAlberghi extends Fragment implements PresenterToView
         bundle.putDoubleArray("latitudine", latitudine);
 
         if (gpsEnabled) {
+
             String rangeString = range.getText().toString();
             bundle.putInt("range", Integer.parseInt(rangeString.substring(0, rangeString.length() - 1)));
             bundle.putDouble("utenteLong", userCoords.longitude());
@@ -321,7 +323,6 @@ public class RicercaStandardAlberghi extends Fragment implements PresenterToView
         luogoUtente=placename;
         userCoords=coords;
         cercaButton.setEnabled(true);
-        System.out.println(placename);
     }
 
     @Override

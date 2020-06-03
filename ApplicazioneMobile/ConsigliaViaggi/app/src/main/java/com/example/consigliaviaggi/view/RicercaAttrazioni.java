@@ -28,15 +28,12 @@ public class RicercaAttrazioni extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         BottomNavigationView b=findViewById(R.id.search);
-
         b.setOnNavigationItemSelectedListener(navListener);
         selectedFragment=new RicercaStandardAttrazioni();
         getSupportFragmentManager().beginTransaction().replace(R.id.framericerca, selectedFragment).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener= menuItem -> {
-
-        selectedFragment = null;
 
         switch (menuItem.getItemId()) {
 
@@ -51,11 +48,13 @@ public class RicercaAttrazioni extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.framericerca, selectedFragment).commit();
         return true;
     };
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
         selectedFragment.onRequestPermissionsResult(requestCode,permissions,grantResults);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 

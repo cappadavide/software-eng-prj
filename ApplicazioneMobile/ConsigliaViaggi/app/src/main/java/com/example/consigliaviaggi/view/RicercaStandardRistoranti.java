@@ -45,7 +45,6 @@ public class RicercaStandardRistoranti extends Fragment implements PresenterToVi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.activity_ricerca_standard_ristoranti, container, false);
-
         rangeTitle=rootView.findViewById(R.id.distanzatitle);
         range=rootView.findViewById(R.id.distanzavalue);
         gpsButton=rootView.findViewById(R.id.geoloc);
@@ -171,7 +170,7 @@ public class RicercaStandardRistoranti extends Fragment implements PresenterToVi
             cercaButton.setEnabled(true);
         });
 
-        seekBar.getProgressDrawable().setColorFilter(ContextCompat.getColor(getContext(), R.color.blue), PorterDuff.Mode.SRC_IN);
+        seekBar.getProgressDrawable().setColorFilter(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.blue), PorterDuff.Mode.SRC_IN);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @SuppressLint("SetTextI18n")
@@ -203,42 +202,42 @@ public class RicercaStandardRistoranti extends Fragment implements PresenterToVi
 
         nome.addTextChangedListener(new TextWatcher() {
 
-                                        @Override
-                                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                                        }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
-                                        @Override
-                                        public void onTextChanged(CharSequence s, int start, int before, int count) {
-                                            String termineInput = nome.getText().toString();
-                                            cercaButton.setEnabled(termineInput.length()>0);
-                                        }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String termineInput = nome.getText().toString();
+                cercaButton.setEnabled(termineInput.length()>0);
+            }
 
-                                        @Override
-                                        public void afterTextChanged(Editable s) {
+            @Override
+            public void afterTextChanged(Editable s) {
 
-                                        }
-                                    }
+            }
+        }
         );
 
         localita.addTextChangedListener(new TextWatcher() {
 
-                                            @Override
-                                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                                            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
-                                            @Override
-                                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                                                String localitaInput = localita.getText().toString();
-                                                cercaButton.setEnabled(localitaInput.length()>0);
-                                            }
+                String localitaInput = localita.getText().toString();
+                cercaButton.setEnabled(localitaInput.length()>0);
+            }
 
-                                            @Override
-                                            public void afterTextChanged(Editable s) {
-                                                if(localita.hasFocus())
-                                                    presenter.getLocationSuggestions(s.toString());
-                                            }
-                                        }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(localita.hasFocus())
+                    presenter.getLocationSuggestions(s.toString());
+            }
+        }
         );
         prezzoda.addTextChangedListener(new TextWatcher() {
             @Override
@@ -295,12 +294,12 @@ public class RicercaStandardRistoranti extends Fragment implements PresenterToVi
         bundle.putDoubleArray("longitudine", longitudine);
         bundle.putDoubleArray("latitudine", latitudine);
 
-        if(gpsEnabled){
+        if (gpsEnabled) {
 
-            String rangeString=range.getText().toString();
-            bundle.putInt("range",Integer.parseInt(rangeString.substring(0,rangeString.length()-1)));
-            bundle.putDouble("utenteLong",userCoords.longitude());
-            bundle.putDouble("utenteLat",userCoords.latitude());
+            String rangeString = range.getText().toString();
+            bundle.putInt("range", Integer.parseInt(rangeString.substring(0, rangeString.length() - 1)));
+            bundle.putDouble("utenteLong", userCoords.longitude());
+            bundle.putDouble("utenteLat", userCoords.latitude());
         }
         intent.putExtras(bundle);
         startActivity(intent);
