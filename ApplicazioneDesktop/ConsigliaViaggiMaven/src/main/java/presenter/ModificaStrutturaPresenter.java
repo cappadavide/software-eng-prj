@@ -355,7 +355,10 @@ public class ModificaStrutturaPresenter implements Initializable, RicercaIndiriz
             dialog.setContentText("A questo indirizzo è stata già assegnata una struttura.");
         } else if (corpo.contains("foto_pkey")) {
             dialog.setContentText("Una o più foto sono state già utilizzate per un'altra struttura. Riprovare.");
-        } else {
+        } else if (corpo.contains("prezzocheck")){
+            dialog.setContentText("Stabilire un range di prezzo valido.");
+        }
+        else {
             dialog.setContentText(corpo);
         }
         javafx.geometry.Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
