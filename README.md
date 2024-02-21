@@ -1,3 +1,5 @@
-# ConsigliaViaggi19
+# Software Engineering Project
+> [!NOTE]
+> The aim of this course project is to design and implement a travel recommendation platform, **ConsigliaViaggi**. Additionally, the provision of a document specifying the system's functionalities through UML notations, Cockburn models, interface mock-ups etc., is required.
 
-![immagine](https://github.com/cappadavide/software-eng-prj/assets/70511599/3613def7-5278-4ea9-96ae-3420d881b433)
+# ConsigliaViaggi
