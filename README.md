@@ -19,6 +19,8 @@ The distributed system consists of:
 
 ![Slide4_1](https://github.com/cappadavide/software-eng-prj/assets/58134090/45609e82-b977-4c1b-a7db-cee225091845)
 ![Slide5_m](https://github.com/cappadavide/software-eng-prj/assets/58134090/b2ff1914-516b-4cc9-94be-31bce670ab9c)
+![Slide9](https://github.com/cappadavide/software-eng-prj/assets/70511599/6ca371c9-65a2-42e5-8e86-14903e6a8035)
+![Slide11](https://github.com/cappadavide/software-eng-prj/assets/70511599/2a5a4869-0a20-49de-ba2d-787a549aaa03)
 
 ## Key System Services
 
