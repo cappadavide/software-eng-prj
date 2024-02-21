@@ -17,6 +17,9 @@ The distributed system consists of:
 - **Back-Office**: Administered by administrators for managing lodging facilities and reviews.
 - **Front-End**: Accessed by end-users for searching lodging facilities and viewing related reviews, including on-the-go location-based services (e.g., displaying all restaurants within a 500m radius of the user's current location).
 
+![Slide4](https://github.com/cappadavide/software-eng-prj/assets/58134090/38780abf-9808-4302-8085-da21cfb92eaa)
+![Slide5_m](https://github.com/cappadavide/software-eng-prj/assets/58134090/b2ff1914-516b-4cc9-94be-31bce670ab9c)
+
 ## Key System Services
 
 The primary services offered by the system are as follows:
