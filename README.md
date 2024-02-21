@@ -15,8 +15,7 @@ CV'19 (Consiglia Viaggi) is a complex and distributed Information System aimed a
 The distributed system consists of:
 
 - **Back-Office**: Administered by administrators for managing lodging facilities and reviews.
-- **Front-End**: Accessed by end-users for searching lodging facilities and viewing related reviews.
-- **Mobile Client**: Utilized for mobile functionalities, including on-the-go location-based services (e.g., displaying all restaurants within a 500m radius of the user's current location).
+- **Front-End**: Accessed by end-users for searching lodging facilities and viewing related reviews, including on-the-go location-based services (e.g., displaying all restaurants within a 500m radius of the user's current location).
 
 ## Key System Services
 
